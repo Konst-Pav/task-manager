@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Django на Хекслете{% endblock %}</title>
+    </head>
+    <body>
+        <div id="sidebar">
+            <a href="/">Менеджер задач</a>
+            {% block sidebar %}
+            <ul>
+                <li><a href="{% url 'users_index' %}">Пользователи</a></li>
+                <li><a href="{% url 'statuses_index' %}">Статусы</a></li>
+                <li><a href="{% url 'labels_index' %}">Метки</a></li>
+                <li><a href="{% url 'tasks_index' %}">Задачи</a></li>
+                <li><a href="">Выход</a></li>
+            </ul>
+            {% endblock %}
+        </div>
+        <div id="content">
+            {% if messages %}
+                {% for message in messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li class="{{ message.tags }}">
+                            {{ message }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            {% endif %}
+            {% block content %}{% endblock %}
+        </div>
+        <footer>
+            {% block footer %}
+            <div class="container my-5 pt-4 border-top">
+                <a target="_blank" href="https://ru.hexlet.io">Hexlet</a>
+            </div>
+            {% endblock %}
+        </footer>
+    </body>
+</html>

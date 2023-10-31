@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Менеджер задач Hexlet{% endblock %}
+{% block content %}
+<h1>Статусы</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Дата создания</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for status in statuses %}
+        <tr>
+            <td>{{ status.id }}</td>
+            <td>{{ status.name }}</td>
+            <td>{{ status.created_at }}</td>
+            <td>
+                <a href="{% url 'statuses_update' %}">Изменить</a>
+                <a href="{% url 'statuses_delete' %}">Удалить</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

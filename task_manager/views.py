@@ -7,3 +7,8 @@ class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'index.html')
+
+
+class LoginView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'login.html')

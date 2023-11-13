@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Менеджер задач Hexlet{% endblock %}
+{% block content %}
+<h1 class="my-4">Создать статус</h1>
+<form method="post">
+    <div class="card mb-3">
+        <div class="card-body bg-light">
+            <div class="mb-3">
+                <label for="id_name" class="form-label">Имя</label>
+                <input type="text" class="form-control" required id="id_name" placeholder="Название статуса">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Создать">
+        </div>
+    </div>
+</form>
+{% endblock %}

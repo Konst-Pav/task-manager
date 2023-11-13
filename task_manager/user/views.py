@@ -27,16 +27,16 @@ class UserIndexView(View):
 class UserCreateView(View):
 
     def get(self, request, *args, **kwargs):
-        return HttpResponse('Create user')
+        return render(request, 'user/create.html')
 
 
 class UserUpdateView(View):
 
-    def get(self, *args, **kwargs):
-        return HttpResponse('Update user')
+    def get(self, request, *args, **kwargs):
+        return render(request, 'user/update.html')
 
 
 class UserDeleteView(View):
 
-    def get(self, *args, **kwargs):
-        return HttpResponse('Delete user')
+    def get(self, request, *args, **kwargs):
+        return render(request, 'user/delete.html')

@@ -9,12 +9,12 @@ class StatusIndexView(View):
         statuses = [
             {
                 'id': 1,
-                'name': 'tota',
+                'name': 'В процессе',
                 'created_at': '25-10-2023',
             },
             {
                 'id': 2,
-                'name': 'extra',
+                'name': 'На стопе',
                 'created_at': '27-10-2023',
             }
         ]
@@ -22,18 +22,16 @@ class StatusIndexView(View):
 
 
 class StatusCreateView(View):
-
     def get(self, request, *args, **kwargs):
-        return HttpResponse('Create status')
+        return render(request, 'status/create.html')
 
 
 class StatusUpdateView(View):
-
-    def get(self, *args, **kwargs):
-        return HttpResponse('Update status')
+    def get(self, request, *args, **kwargs):
+        return render(request, 'status/update.html')
 
 
 class StatusDeleteView(View):
 
-    def get(self, *args, **kwargs):
-        return HttpResponse('Delete status')
+    def get(self, request, *args, **kwargs):
+        return render(request, 'status/delete.html')

@@ -12,17 +12,22 @@ class TaskIndexView(View):
 class TaskCreateView(View):
 
     def get(self, request, *args, **kwargs):
-        return HttpResponse('Create task')
+        return render(request, 'task/create.html')
+
+
+class TaskReadView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'task/read.html')
 
 
 class TaskUpdateView(View):
 
-    def get(self, *args, **kwargs):
-        return HttpResponse('Update task')
+    def get(self, request, *args, **kwargs):
+        return render(request, 'task/update.html')
 
 
 class TaskDeleteView(View):
 
-    def get(self, *args, **kwargs):
-        return HttpResponse('Delete task')
+    def get(self, request, *args, **kwargs):
+        return render(request, 'task/delete.html')
 

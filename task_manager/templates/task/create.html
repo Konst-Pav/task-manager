@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Менеджер задач Hexlet{% endblock %}
+{% block content %}
+<h1 class="my-4">Создать задачу</h1>
+<form method="post">
+    <div class="card mb-3">
+        <div class="card-body bg-light">
+            <div class="mb-3">
+                <label for="id_name" class="form-label">Имя</label>
+                <input type="text" class="form-control" required id="id_name" placeholder="Название задачи">
+            </div>
+            <div class="mb-3">
+                <label for="id_description" class="form-label">Описание</label>
+                <textarea name="description" cols="40" rows="10" class="form-control" id="id_description" placeholder="Описание задачи"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="id_status" class="form-label">Статус</label>
+                <select name="status" class="form-select" required id="id_status">
+                    <option value selected>-----</option>
+                    <option value="1">Срочно</option>
+                    <option value="2">Во вторую очередь</option>
+                    <option value="3">Для бухгалтерии</option>
+                    <option value="4">На согласование</option>
+                    <option value="5">До НГ</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="id_executor" class="form-label">Исполнитель</label>
+                <select name="status" class="form-select" required id="id_executor">
+                    <option value selected>-----</option>
+                    <option value="1">Anton Sergeevich</option>
+                    <option value="2">Petr Vasilev</option>
+                    <option value="3">Anna Vershkova</option>
+                    <option value="4">Polina Antonova</option>
+                    <option value="5">Igor Petrov</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="id_label" class="form-label">Метки</label>
+                <select name="status" class="form-select" required id="id_label" multiple>
+                    <option value="1">concept</option>
+                    <option value="2">lvl</option>
+                    <option value="3">test</option>
+                    <option value="4">check</option>
+                </select>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Создать">
+        </div>
+    </div>
+</form>
+{% endblock %}

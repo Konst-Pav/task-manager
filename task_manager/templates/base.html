@@ -3,39 +3,35 @@
     <head>
         <title>{% block title %}Django на Хекслете{% endblock %}</title>
     </head>
-    <body>
-        <div id="sidebar">
-            <a href="/">Менеджер задач</a>
-            {% block sidebar %}
-            <ul>
-                <li><a href="{% url 'users_index' %}">Пользователи</a></li>
-                <li><a href="{% url 'statuses_index' %}">Статусы</a></li>
-                <li><a href="{% url 'labels_index' %}">Метки</a></li>
-                <li><a href="{% url 'tasks_index' %}">Задачи</a></li>
-                <li><a href="">Выход</a></li>
-            </ul>
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+    <body class="d-flex flex-column min-vh-100">
+        <div class="container">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+                <div class="col-md-3 mb-2 mb-md-0">
+                    <a href="{% url 'index_view' %}" class="d-inline-flex link-body-emphasis text-decoration-none">Менеджер задач</a>
+                </div>
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="{% url 'users_index' %}" class="nav-link px-2 link-secondary">Пользователи</a></li>
+                    <li><a href="{% url 'statuses_index' %}" class="nav-link px-2">Статусы</a></li>
+                    <li><a href="{% url 'labels_index' %}" class="nav-link px-2">Метки</a></li>
+                    <li><a href="{% url 'tasks_index' %}" class="nav-link px-2">Задачи</a></li>
+                </ul>
+                <div class="col-md-3 text-end">
+                    <button type="button" class="btn btn-outline-primary me-2">Войти</button>
+                    <button type="button" class="btn btn-primary">Регистрация</button>
+                </div>
+            </header>
+            {% block content %}
             {% endblock %}
         </div>
-        <div id="content">
-            {% if messages %}
-                {% for message in messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                        <li class="{{ message.tags }}">
-                            {{ message }}
-                        </li>
-                        {% endfor %}
-                    </ul>
-                {% endfor %}
-            {% endif %}
-            {% block content %}{% endblock %}
-        </div>
-        <footer>
-            {% block footer %}
-            <div class="container my-5 pt-4 border-top">
+        <footer class="container">
+            <br>
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-top">
                 <a target="_blank" href="https://ru.hexlet.io">Hexlet</a>
             </div>
-            {% endblock %}
         </footer>
     </body>
 </html>

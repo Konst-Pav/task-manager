@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Менеджер задач Hexlet{% endblock %}
 {% block content %}
-<h1>Статусы</h1>
-<table>
-    <thead>
+<h1 class="my-4">Статусы<a class="btn btn-primary mx-4" href="{% url 'statuses_create' %}">Создать</a></h1>
+<table class="table">
+    <thead class="table-light">
         <tr>
             <th>ID</th>
             <th>Название</th>
@@ -11,15 +11,15 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="table-group-divider">
         {% for status in statuses %}
-        <tr>
+        <tr class="align-middle">
             <td>{{ status.id }}</td>
             <td>{{ status.name }}</td>
             <td>{{ status.created_at }}</td>
             <td>
-                <a href="{% url 'statuses_update' %}">Изменить</a>
-                <a href="{% url 'statuses_delete' %}">Удалить</a>
+                <a class="btn btn-link" href="{% url 'statuses_update' 1 %}}">Изменить</a>
+                <a class="btn btn-link" href="{% url 'statuses_delete' 1 %}}">Удалить</a>
             </td>
         </tr>
         {% endfor %}

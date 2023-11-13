@@ -1,5 +1,28 @@
 {% extends "base.html" %}
 {% block title %}Менеджер задач Hexlet{% endblock %}
 {% block content %}
-<h1>Метки</h1>
+<h1 class="my-4">Метки<a class="btn btn-primary mx-4" href="{% url 'labels_create' %}">Создать</a></h1>
+<table class="table">
+    <thead class="table-light">
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Дата создания</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% for label in labels %}
+        <tr class="align-middle">
+            <td>{{ label.id }}</td>
+            <td>{{ label.name }}</td>
+            <td>{{ label.created_at }}</td>
+            <td>
+                <a class="btn btn-link" href="{% url 'labels_update' 1 %}}">Изменить</a>
+                <a class="btn btn-link" href="{% url 'labels_delete' 1 %}}">Удалить</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

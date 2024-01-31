@@ -16,12 +16,12 @@
         {% for user in users %}
         <tr class="align-middle">
             <td>{{ user.id }}</td>
-            <td>{{ user.nickname }}</td>
+            <td>{{ user.username }}</td>
             <td>{{ user.first_name }} {{ user.last_name }}</td>
-            <td>{{ user.created_at }}</td>
+            <td>{{ user.date_joined }}</td>
             <td>
-                <a class="btn btn-link" href="{% url 'users_update' 1 %}}">Изменить</a>
-                <a class="btn btn-link" href="{% url 'users_delete' 1 %}}">Удалить</a>
+                <a class="btn btn-link" href="{% url 'users_update' user.id %}">Изменить</a>
+                <a class="btn btn-link" href="{% url 'users_delete' user.id %}">Удалить</a>
             </td>
         </tr>
         {% endfor %}

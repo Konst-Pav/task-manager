@@ -18,8 +18,8 @@
             <td>{{ status.name }}</td>
             <td>{{ status.created_at }}</td>
             <td>
-                <a class="btn btn-link" href="{% url 'statuses_update' 1 %}}">Изменить</a>
-                <a class="btn btn-link" href="{% url 'statuses_delete' 1 %}}">Удалить</a>
+                <a class="btn btn-link" href="{% url 'statuses_update' status.id %}">Изменить</a>
+                <a class="btn btn-link" href="{% url 'statuses_delete' status.id %}">Удалить</a>
             </td>
         </tr>
         {% endfor %}

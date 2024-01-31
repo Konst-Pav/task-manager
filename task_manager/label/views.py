@@ -1,29 +1,41 @@
 from django.shortcuts import render
 from django.views import View
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse, reverse_lazy
+from task_manager.utils import LoginRequiredMixinWithMessage
+from task_manager.label.models import Label
+from task_manager.label.forms import LabelForm
 
 
-class LabelIndexView(View):
-
-    def get(self, request, *args, **kwargs):
-        labels = [
-            {'id': 1, 'name': 'Не важно', 'created_at': '12-02-2032'},
-            {'id': 2, 'name': 'В первую очередь', 'created_at': '07-12-2030'},
-            {'id': 23, 'name': 'Важно', 'created_at': '12-02-2032'},
-        ]
-        return render(request, 'label/index.html', {'labels': labels})
+class LabelIndexView(LoginRequiredMixinWithMessage, ListView):
+    model = Label
+    template_name = 'label/index.html'
+    context_object_name = 'labels'
 
 
-class LabelCreateView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'label/create.html')
+class LabelCreateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, CreateView):
+    model = Label
+    form_class = LabelForm
+    template_name = 'label/create.html'
+    success_url = reverse_lazy('labels_index')
+    success_message = 'Метка успешно создана'
 
 
-class LabelUpdateView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'label/update.html')
+class LabelUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, UpdateView):
+    model = Label
+    template_name = 'label/update.html'
+    form_class = LabelForm
+    success_url = reverse_lazy('labels_index')
+    success_message = 'Метка успешно изменена'
+    login_url = reverse_lazy('login_view')
 
 
-class LabelDeleteView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'label/delete.html')
+class LabelDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, DeleteView):
+    model = Label
+    template_name = 'label/delete.html'
+    success_url = reverse_lazy('labels_index')
+    success_message = 'Метка успешно удалена'
+    login_url = reverse_lazy('login_view')

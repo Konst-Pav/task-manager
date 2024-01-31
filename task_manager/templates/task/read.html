@@ -1,39 +1,47 @@
 {% extends "base.html" %}
 {% block title %}Менеджер задач Hexlet{% endblock %}
 {% block content %}
-<h1 class="my-4">Создать задачу</h1>
+<h1 class="my-4">Просмотр задачи</h1>
 <div class="card">
     <div class="card-header bg-secondary text-white">
-        <h2>Название задачи</h2>
+        <h2>{{ task.name }}</h2>
     </div>
     <div class="card-body bg-light">
-        <p>Описание задачи</p>
+        <p>{% if task.description %}{{ task.description }}{% endif %}</p>
         <hr>
         <div class="container">
             <div class="row p-1">
                 <div class="col">Автор</div>
-                <div class="col">Петр Петров</div>
+                <div class="col">{{ task.author }}</div>
             </div>
             <div class="row p-1">
                 <div class="col">Исполнитель</div>
-                <div class="col">Иван Иванов</div>
+                <div class="col">{{ task.executor }}</div>
             </div>
             <div class="row p-1">
                 <div class="col">Статус</div>
-                <div class="col">В работе</div>
+                <div class="col">{{ task.status }}</div>
             </div>
             <div class="row p-1">
                 <div class="col">Дата создания</div>
-                <div class="col">12-02-1989</div>
+                <div class="col">{{ task.created_at }}</div>
             </div>
             <div class="row p-1">
-                <div class="col">Метки</div>
-                <div class="col">Перечисление меток</div>
+                <div class="col"><h6>Метки:</h6></div>
+                <ul>
+                    {% if task.labels %}
+                    {% for label in task.labels.all %}
+                    <li>
+                        {{ label.name }}
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
             </div>
             <div class="row p-1">
                 <div class="col">
-                    <a class="btn btn-link" href="{% url 'tasks_update' 1 %}}">Изменить</a>
-                    <a class="btn btn-link" href="{% url 'tasks_delete' 1 %}}">Удалить</a>
+                    <a class="btn btn-link" href="{% url 'tasks_update' task.id %}">Изменить</a>
+                    <a class="btn btn-link" href="{% url 'tasks_delete' task.id %}">Удалить</a>
                 </div>
             </div>
         </div>

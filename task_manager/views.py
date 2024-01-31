@@ -1,14 +1,9 @@
 from django.shortcuts import render
 from django.views import View
-from django.http import HttpResponse
+from django.utils.translation import gettext as _
 
 
 class IndexView(View):
-
     def get(self, request, *args, **kwargs):
-        return render(request, 'index.html')
-
-
-class LoginView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'login.html')
+        greetings = _('Hello world!')
+        return render(request, 'index.html', {'greetings': greetings})

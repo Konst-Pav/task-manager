@@ -60,12 +60,12 @@
             <td>{{ task.id }}</td>
             <td><a href="{% url 'tasks_read' task.id %}">{{ task.name }}</a></td>
             <td>{{ task.status.name }}</td>
-            <td>{{ task.user.name }}</td>
-            <td>{{ task.executor.name }}</td>
+            <td>{{ task.author.username }}</td>
+            <td>{{ task.executor.username }}</td>
             <td>{{ task.created_at }}</td>
             <td>
-                <a class="btn btn-link" href="{% url 'statuses_update' task.id %}}">Изменить</a>
-                <a class="btn btn-link" href="{% url 'statuses_delete' task.id %}}">Удалить</a>
+                <a class="btn btn-link" href="{% url 'tasks_update' task.id %}">Изменить</a>
+                <a class="btn btn-link" href="{% url 'tasks_delete' task.id %}">Удалить</a>
             </td>
         </tr>
         {% endfor %}

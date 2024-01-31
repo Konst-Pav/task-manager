@@ -1,2 +1,26 @@
 run_server:
 	poetry run python manage.py runserver
+
+test:
+	poetry run python manage.py test
+
+test_status:
+	poetry run python manage.py test task_manager.status
+
+test_user:
+	poetry run python manage.py test task_manager.user
+
+test_task:
+	poetry run python manage.py test task_manager.task
+
+test_label:
+	poetry run python manage.py test task_manager.label
+
+migrations:
+	poetry run python manage.py makemigrations
+
+migrate:
+	poetry run python manage.py migrate
+
+shell:
+	poetry run python manage.py shell

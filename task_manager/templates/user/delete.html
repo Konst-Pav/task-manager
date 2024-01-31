@@ -2,8 +2,9 @@
 {% block title %}Менеджер задач Hexlet{% endblock %}
 {% block content %}
 <h1>Удаление пользователя</h1>
-<p>Вы уверены, что хотите удалить Konstantin Pavlov?</p>
-<form method="post">
+<p>Вы уверены, что хотите удалить {{ user.first_name }} {{ user.last_name }}?</p>
+<form action="{% url 'users_delete' user.id %}" method="post">
+    {% csrf_token %}
     <input class="btn btn-danger" type="submit" value="Да, удалить">
 </form>
 {% endblock %}

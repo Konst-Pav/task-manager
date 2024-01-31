@@ -5,11 +5,11 @@
 <form method="post">
     <div class="card mb-3">
         <div class="card-body bg-light">
-            <div class="mb-3">
-                <label for="id_name" class="form-label">Имя</label>
-                <input type="text" class="form-control" required id="id_name" placeholder="Название метки">
-            </div>
-            <input class="btn btn-primary" type="submit" value="Создать">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary" type="submit">Создать</button>
+            </form>
         </div>
     </div>
 </form>

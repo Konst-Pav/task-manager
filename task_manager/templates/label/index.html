@@ -18,8 +18,8 @@
             <td>{{ label.name }}</td>
             <td>{{ label.created_at }}</td>
             <td>
-                <a class="btn btn-link" href="{% url 'labels_update' 1 %}}">Изменить</a>
-                <a class="btn btn-link" href="{% url 'labels_delete' 1 %}}">Удалить</a>
+                <a class="btn btn-link" href="{% url 'labels_update' label.id %}">Изменить</a>
+                <a class="btn btn-link" href="{% url 'labels_delete' label.id %}">Удалить</a>
             </td>
         </tr>
         {% endfor %}

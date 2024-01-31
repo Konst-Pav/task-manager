@@ -15,14 +15,24 @@
                 </div>
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="{% url 'users_index' %}" class="nav-link px-2 link-secondary">Пользователи</a></li>
+                    {% if request.user.is_authenticated %}
                     <li><a href="{% url 'statuses_index' %}" class="nav-link px-2">Статусы</a></li>
                     <li><a href="{% url 'labels_index' %}" class="nav-link px-2">Метки</a></li>
                     <li><a href="{% url 'tasks_index' %}" class="nav-link px-2">Задачи</a></li>
+                    {% endif %}
                 </ul>
+                {% if request.user.is_authenticated %}
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li class="nav-link text-center px-2 text-dark"><a>{{ user.username }}</a></li>
+                    <li class="nav-link px-2 text-dark"> | </li>
+                    <li><a type="button" href="{% url 'logout' %}" class="btn btn-outline-primary me-2">Выйти</a></li>
+                </ul>
+                {% else %}
                 <div class="col-md-3 text-end">
-                    <button type="button" class="btn btn-outline-primary me-2">Войти</button>
-                    <button type="button" class="btn btn-primary">Регистрация</button>
+                    <a type="button" href="{% url 'login_view' %}" class="btn btn-outline-primary me-2">Войти</a>
+                    <a type="button" href="{% url 'users_create' %}" class="btn btn-primary">Регистрация</a>
                 </div>
+                {% endif %}
             </header>
             {% block content %}
             {% endblock %}

@@ -1,42 +1,16 @@
 {% extends "base.html" %}
 {% block title %}Менеджер задач Hexlet{% endblock %}
+{% load django_bootstrap5 %}
 {% block content %}
 <h1>Регистрация</h1>
 <form method="post">
     <div class="card mb-3">
         <div class="card-body bg-light">
-            <div class="mb-3">
-                <label for="id_first_name" class="form-label">Имя</label>
-                <input type="text" name="first_name" maxlength="150" class="form-control" placeholder="Ваше имя" id="id_first_name">
-            </div>
-            <div class="mb-3">
-                <label for="id_last_name" class="form-label">Фамилия</label>
-                <input type="text" name="first_name" maxlength="150" class="form-control" placeholder="Ваша фамилия" id="id_last_name">
-            </div>
-            <div class="mb-3">
-                <label for="id_username" class="form-label">Имя пользователя</label>
-                <input type="text" name="username" maxlength="150" class="form-control" placeholder="Имя пользователя" id="id_username">
-                <div class="form-text">
-                    Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_
-                </div>
-            </div>
-            <div class="card mb-3 card-body bg-white">
-                <div class="mb-3">
-                <label for="id_password1" class="form-label">Пароль</label>
-                <input type="password" name="password1" maxlength="150" autocomplete="new-password" class="form-control" placeholder="Пароль" id="id_password1">
-                <div class="form-text">
-                    Пароль должен содержать минимум 3 символа
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="id_password2" class="form-label">Подтверждение пароля</label>
-                <input type="password" name="password1" maxlength="150" autocomplete="new-password" class="form-control" placeholder="Подтверждение пароля" id="id_password2">
-                <div class="form-text">
-                    Для подтверждения введите, пароль еще раз.
-                </div>
-            </div>
-            </div>
-            <input class="btn btn-primary" type="submit" value="Зарегистрировать">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary" type="submit">Регистрация</button>
+            </form>
         </div>
     </div>
 </form>

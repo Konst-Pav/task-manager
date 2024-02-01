@@ -8,6 +8,9 @@ from django.urls import reverse, reverse_lazy
 from task_manager.utils import LoginRequiredMixinWithMessage
 from task_manager.label.models import Label
 from task_manager.label.forms import LabelForm
+from task_manager.task.models import Task
+from django.contrib import messages
+from django.shortcuts import redirect
 
 
 class LabelIndexView(LoginRequiredMixinWithMessage, ListView):
@@ -39,3 +42,10 @@ class LabelDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, Delete
     success_url = reverse_lazy('labels_index')
     success_message = 'Метка успешно удалена'
     login_url = reverse_lazy('login_view')
+
+    def post(self, request, *args, **kwargs):
+        tasks = Task.objects.filter(labels__id=kwargs['pk'])
+        if list(tasks):
+            messages.add_message(request, messages.ERROR, 'Невозможно удалить метку, потому что она используется')
+            return redirect(reverse_lazy('labels_index'))
+        return super().post(request, *args, **kwargs)

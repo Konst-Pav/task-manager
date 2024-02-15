@@ -29,9 +29,9 @@ class TestUserViews(TestCase):
 
     def test_user_delete(self):
         test_user = User.objects.create_user(username='test_username')
-        response = self.client.get(reverse('users_delete', args=[test_user.id]))
+        response = self.client.get(reverse_lazy('users_delete', args=[test_user.id]))
         self.assertEqual(response.status_code, 200)
-        response = self.client.post(reverse('users_delete', args=[test_user.id]))
+        response = self.client.post(reverse_lazy('users_delete', args=[test_user.id]))
         try:
             deleted_user = User.objects.get(id=test_user.id)
             object_deleted = False

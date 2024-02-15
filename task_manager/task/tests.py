@@ -58,6 +58,9 @@ class TestTask(TestCase):
                 break
         self.assertTrue(data_is_correct)
 
+    def test_task_index_filtered_data(self):
+        self.assertTrue(False)
+
     def test_task_index_login_required(self):
         self.client.logout()
         response = self.client.get(reverse('tasks_index'))

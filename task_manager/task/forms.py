@@ -39,3 +39,31 @@ class TaskForm(ModelForm):
     class Meta:
         model = Task
         fields = ['name', 'description', 'executor', 'status', 'labels']
+
+#
+# class TaskFilterForm(forms.Form):
+#
+#     status = forms.ModelChoiceField(
+#         queryset=Status.objects.all(),
+#         label='Статус',
+#         required=False,
+#         widget=forms.Select(attrs={'class': 'form-select'}),
+#     )
+#     executor = forms.ModelChoiceField(
+#         queryset=User.objects.all(),
+#         label='Исполнитель',
+#         required=False,
+#         widget=forms.Select(attrs={'class': 'form-select'}),
+#     )
+#     label = forms.ModelChoiceField(
+#         queryset=Label.objects.all(),
+#         label='Метка',
+#         required=False,
+#         widget=forms.Select(attrs={'class': 'form-select'}),
+#     )
+#     user_tasks = forms.BooleanField(
+#         label='',
+#         help_text='Только свои задачи',
+#         required=False,
+#         widget=forms.Select(attrs={'class': 'form-check-label'}),
+#     )

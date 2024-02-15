@@ -5,17 +5,18 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from task_manager.task.models import Task
-from task_manager.status.models import Status
 from task_manager.task.forms import TaskForm
-from task_manager.status.forms import StatusForm
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.utils import LoginRequiredMixinWithMessage
+from task_manager.task.filters import TaskFilter
+from django_filters.views import FilterView
 
 
-class TaskIndexView(LoginRequiredMixinWithMessage, ListView):
-    model = Task
+class TaskIndexView(LoginRequiredMixinWithMessage, FilterView):
+    filterset_class = TaskFilter
     template_name = 'task/index.html'
     context_object_name = 'tasks'
+    filterset_fields = ['executor', 'status', 'label']
 
 
 class TaskCreateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, CreateView):

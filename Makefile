@@ -22,5 +22,8 @@ migrations:
 migrate:
 	poetry run python manage.py migrate
 
-shell:
-	poetry run python manage.py shell
+# shell:
+# 	poetry run python manage.py shell
+
+shell_plus:
+	poetry run python manage.py shell_plus --ipython

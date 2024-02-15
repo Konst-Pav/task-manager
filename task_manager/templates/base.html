@@ -25,7 +25,12 @@
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                     <li class="nav-link text-center px-2 text-dark"><a>{{ user.username }}</a></li>
                     <li class="nav-link px-2 text-dark"> | </li>
-                    <li><a type="button" href="{% url 'logout' %}" class="btn btn-outline-primary me-2">Выйти</a></li>
+                    <li>
+                        <form action="{% url 'logout' %}" method="POST">
+                            {% csrf_token %}
+                            <input class="btn btn-outline-primary me-2" type="submit" value="Выйти">
+                        </form>
+                    </li>
                 </ul>
                 {% else %}
                 <div class="col-md-3 text-end">

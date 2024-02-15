@@ -53,7 +53,7 @@ class UserDeleteView(SuccessMessageMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         try:
-            super().post(self, request, *args, **kwargs)
+            return super().post(self, request, *args, **kwargs)
         except ProtectedError:
             messages.add_message(request, messages.ERROR, 'Невозможно удалить пользователя, потому что он используется')
             return redirect(reverse_lazy('index_view'))

@@ -21,19 +21,33 @@ class StatusIndexView(LoginRequiredMixinWithMessage, ListView):
 class StatusCreateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, CreateView):
     model = Status
     form_class = StatusForm
-    template_name = 'status/create.html'
+    template_name = 'create.html'
     success_url = reverse_lazy('statuses_index')
     success_message = _('The status has been successfully created')
     login_url = reverse_lazy('login_view')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('Task Manager – create a status')
+        body = {'title': _('Create a status'), 'button_value': _('create')}
+        context['body'] = body
+        return context
 
 
 class StatusUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, UpdateView):
     model = Status
     form_class = StatusForm
-    template_name = 'status/update.html'
+    template_name = 'update.html'
     success_url = reverse_lazy('statuses_index')
     success_message = _('The status has been successfully changed')
     login_url = '/login/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('Task Manager – change the status')
+        body = {'title': _('Change the status'), 'button_value': _('edit')}
+        context['body'] = body
+        return context
 
 
 class StatusDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, DeleteView):

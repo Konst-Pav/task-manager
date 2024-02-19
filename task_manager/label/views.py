@@ -25,19 +25,21 @@ class LabelIndexView(LoginRequiredMixinWithMessage, ListView):
 class LabelCreateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, CreateView):
     model = Label
     form_class = LabelForm
-    template_name = 'label/create.html'
+    template_name = 'create.html'
     success_url = reverse_lazy('labels_index')
     success_message = _('The label was created successfully')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = _('Task Manager – create a label')
+        body = {'title': _('Create a label'), 'button_value': _('create')}
+        context['body'] = body
         return context
 
 
 class LabelUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, UpdateView):
     model = Label
-    template_name = 'label/update.html'
+    template_name = 'update.html'
     form_class = LabelForm
     success_url = reverse_lazy('labels_index')
     success_message = _('The label has been successfully changed')
@@ -46,6 +48,8 @@ class LabelUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, Update
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = _('Task Manager – change the label')
+        body = {'title': _('Change the label'), 'button_value': _('edit')}
+        context['body'] = body
         return context
 
 

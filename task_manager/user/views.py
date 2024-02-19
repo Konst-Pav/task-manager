@@ -26,9 +26,16 @@ class UserIndexView(ListView):
 class UserCreateView(SuccessMessageMixin, CreateView):
     model = User
     form_class = RegisterUserForm
-    template_name = 'user/create.html'
+    template_name = 'create.html'
     success_url = reverse_lazy('login_view')
     success_message = _('The user has been successfully registered')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('Task Manager – create a user')
+        body = {'title': _('Registration'), 'button_value': _('register')}
+        context['body'] = body
+        return context
 
 
 class UserUpdateView(SuccessMessageMixin, UpdateView):

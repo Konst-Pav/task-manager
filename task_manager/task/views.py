@@ -23,9 +23,16 @@ class TaskIndexView(LoginRequiredMixinWithMessage, FilterView):
 class TaskCreateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, CreateView):
     model = Task
     form_class = TaskForm
-    template_name = 'task/create.html'
+    template_name = 'create.html'
     success_url = reverse_lazy('tasks_index')
     success_message = _('The task has been successfully created')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('Task Manager – create a task')
+        body = {'title': _('Create a task'), 'button_value': _('create')}
+        context['body'] = body
+        return context
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -42,10 +49,17 @@ class TaskReadView(LoginRequiredMixinWithMessage, DetailView):
 class TaskUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, UpdateView):
     model = Task
     form_class = TaskForm
-    template_name = 'task/update.html'
+    template_name = 'update.html'
     success_url = reverse_lazy('tasks_index')
     success_message = _('The task has been successfully changed')
     login_url = '/login/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        body = {'title': _('Change the task'), 'button_value': _('edit')}
+        context['title'] = _('Task Manager – change the task')
+        context['body'] = body
+        return context
 
 
 class TaskDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, DeleteView):

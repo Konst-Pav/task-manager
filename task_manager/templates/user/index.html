@@ -1,14 +1,15 @@
 {% extends "base.html" %}
-{% block title %}Менеджер задач Hexlet{% endblock %}
+{% load i18n %}
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
-<h1 class="my-4">Пользователи</h1>
+<h1 class="my-4">{% translate 'Users' %}</h1>
 <table class="table">
     <thead class="table-light">
         <tr>
-            <th>ID</th>
-            <th>Никнейм</th>
-            <th>Полное имя</th>
-            <th>Дата регистрации</th>
+            <th>{% translate 'ID' %}</th>
+            <th>{% translate 'Username' %}</th>
+            <th>{% translate 'Full name' %}</th>
+            <th>{% translate 'Registration date' %}</th>
             <th></th>
         </tr>
     </thead>
@@ -20,8 +21,8 @@
             <td>{{ user.first_name }} {{ user.last_name }}</td>
             <td>{{ user.date_joined }}</td>
             <td>
-                <a class="btn btn-link" href="{% url 'users_update' user.id %}">Изменить</a>
-                <a class="btn btn-link" href="{% url 'users_delete' user.id %}">Удалить</a>
+                <a class="btn btn-link" href="{% url 'users_update' user.id %}">{% translate 'edit' %}</a>
+                <a class="btn btn-link" href="{% url 'users_delete' user.id %}">{% translate 'delete' %}</a>
             </td>
         </tr>
         {% endfor %}

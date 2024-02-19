@@ -1,12 +1,13 @@
 {% extends "base.html" %}
-{% block title %}Менеджер задач Hexlet{% endblock %}
+{% load i18n %}
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
-<h1 class="my-4">Вход</h1>
+<h1 class="my-4">{% translate 'Login' %}</h1>
 <form method="post">
     <div class="mb-3">
         {% csrf_token %}
         {{ form.as_p }}
-        <input class="btn btn-primary" type="submit" value="Войти">
+        <input class="btn btn-primary" type="submit" value="{% translate 'Login' %}">
     </div>
 </form>
 {% endblock %}

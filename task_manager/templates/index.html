@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Менеджер задач Hexlet{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
@@ -7,9 +7,9 @@
 <div class="card">
     <div class="card-body p-5 bg-light">
         <div class="display-4">{{ greetings }}</div>
-        <p class="lead">Практические курсы по программированию</p>
+        <p class="lead">{% translate 'Practical programming courses' %}</p>
         <hr>
-        <a class="btn btn-primary btn-lg" href="https://ru.hexlet.io">Узнать больше</a>
+        <a class="btn btn-primary btn-lg" href="https://ru.hexlet.io">{% translate 'To learn more' %}</a>
     </div>
 </div>
 {% endblock %}

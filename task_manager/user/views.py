@@ -11,6 +11,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.db.models import ProtectedError
 from django.core.exceptions import ImproperlyConfigured
+from django.utils.translation import gettext as _
 
 from task_manager.user.forms import RegisterUserForm
 from task_manager.user.forms import LoginUserForm
@@ -27,13 +28,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     form_class = RegisterUserForm
     template_name = 'user/create.html'
     success_url = reverse_lazy('login_view')
-    success_message = 'Пользователь успешно зарегистрирован'
-
-    def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)
+    success_message = _('The user has been successfully registered')
 
 
 class UserUpdateView(SuccessMessageMixin, UpdateView):
@@ -41,21 +36,35 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
     form_class = RegisterUserForm
     template_name = 'user/update.html'
     success_url = reverse_lazy('users_index')
-    success_message = 'Пользователь успешно изменен'
+    success_message = _('The user has been successfully changed')
 
 
 class UserDeleteView(SuccessMessageMixin, DeleteView):
     model = User
-    template_name = 'user/delete.html'
+    template_name = 'delete.html'
     success_url = reverse_lazy('index_view')
     error_url = reverse_lazy('index_view')
-    success_message = 'Пользователь успешно удален'
+    success_message = _('The user was successfully deleted')  # Пользователь успешно удален
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('Task Manager – delete a user')
+        user_full_name = f"{context.get('user').first_name} {context.get('user').last_name}"
+        body_title = _('Delete a user')
+        body_subtitle = f"{_('Are you sure you want to delete the user')}: {user_full_name}"
+        button_value = _('Yes, delete')
+        context['body'] = {'title': body_title, 'subtitle': body_subtitle, 'button_value': button_value}
+        return context
 
     def post(self, request, *args, **kwargs):
         try:
             return super().post(self, request, *args, **kwargs)
         except ProtectedError:
-            messages.add_message(request, messages.ERROR, 'Невозможно удалить пользователя, потому что он используется')
+            messages.add_message(
+                request,
+                messages.ERROR,
+                _('It is not possible to delete a user because it is being used'),
+            )
             return redirect(reverse_lazy('index_view'))
 
 
@@ -63,10 +72,15 @@ class LoginUserView(SuccessMessageMixin, LoginView):
     form_class = LoginUserForm
     template_name = 'login.html'
     next_page = reverse_lazy('users_index')
-    success_message = 'Вы залогинены'
+    success_message = _('You are logged in')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('Task Manager – login')
+        return context
 
 
 def logout_user(request):
     logout(request)
-    messages.success(request, "Вы разлогинены")
+    messages.success(request, _('You are logged out'))
     return redirect('index_view')

@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-{% block title %}Менеджер задач Hexlet{% endblock %}
+{% load i18n %}
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
-<h1 class="my-4">Статусы<a class="btn btn-primary mx-4" href="{% url 'statuses_create' %}">Создать</a></h1>
+<h1 class="my-4">{% translate 'Statuses' %}<a class="btn btn-primary mx-4" href="{% url 'statuses_create' %}">{% translate 'Create' %}</a></h1>
 <table class="table">
     <thead class="table-light">
         <tr>
-            <th>ID</th>
-            <th>Название</th>
-            <th>Дата создания</th>
+            <th>{% translate 'ID' %}</th>
+            <th>{% translate 'Name' %}</th>
+            <th>{% translate 'Created at' %}</th>
             <th></th>
         </tr>
     </thead>
@@ -18,8 +19,8 @@
             <td>{{ status.name }}</td>
             <td>{{ status.created_at }}</td>
             <td>
-                <a class="btn btn-link" href="{% url 'statuses_update' status.id %}">Изменить</a>
-                <a class="btn btn-link" href="{% url 'statuses_delete' status.id %}">Удалить</a>
+                <a class="btn btn-link" href="{% url 'statuses_update' status.id %}">{% translate 'edit' %}</a>
+                <a class="btn btn-link" href="{% url 'statuses_delete' status.id %}">{% translate 'delete' %}</a>
             </td>
         </tr>
         {% endfor %}

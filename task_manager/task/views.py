@@ -10,6 +10,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.utils import LoginRequiredMixinWithMessage
 from task_manager.task.filters import TaskFilter
 from django_filters.views import FilterView
+from django.utils.translation import gettext as _
 
 
 class TaskIndexView(LoginRequiredMixinWithMessage, FilterView):
@@ -24,17 +25,11 @@ class TaskCreateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, CreateV
     form_class = TaskForm
     template_name = 'task/create.html'
     success_url = reverse_lazy('tasks_index')
-    success_message = 'Задача успешно создана'
+    success_message = _('The task has been successfully created')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-
-    def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)
 
 
 class TaskReadView(LoginRequiredMixinWithMessage, DetailView):
@@ -49,13 +44,23 @@ class TaskUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, UpdateV
     form_class = TaskForm
     template_name = 'task/update.html'
     success_url = reverse_lazy('tasks_index')
-    success_message = 'Задача успешно изменена'
+    success_message = _('The task has been successfully changed')
     login_url = '/login/'
 
 
 class TaskDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, DeleteView):
     model = Task
-    template_name = 'task/delete.html'
+    template_name = 'delete.html'
     success_url = reverse_lazy('tasks_index')
-    success_message = 'Задача успешно удалена'
+    success_message = _('The task has been successfully deleted')
     login_url = '/login/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('Task Manager – delete a task')
+        context['body'] = {
+            'title': _('Delete a task'),
+            'subtitle': f"{_('Are you sure you want to delete the task')}: {context['task'].name}",
+            'button_value': _('Yes, delete'),
+        }
+        return context

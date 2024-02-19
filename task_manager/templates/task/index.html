@@ -1,14 +1,15 @@
 {% extends "base.html" %}
-{% block title %}Менеджер задач Hexlet{% endblock %}
+{% load i18n %}
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
-<h1 class="my-4">Задачи<a class="btn btn-primary mx-4" href="{% url 'tasks_create' %}">Создать</a></h1>
+<h1 class="my-4">{% translate 'Tasks' %}<a class="btn btn-primary mx-4" href="{% url 'tasks_create' %}">{% translate 'Create' %}</a></h1>
 <div class="card mb-3">
     <div class="card-body bg-light">
         <form class="form-inline center mb-3" action="{% url 'tasks_index' %}">
             {{ filter.form.as_p }}
-            <input class="btn btn-primary" type="submit" value="Показать">
+            <input class="btn btn-primary" type="submit" value="{% translate 'filter' %}">
         </form>
     </div>
 </div>
@@ -16,12 +17,12 @@
 <table class="table">
     <thead class="table-light">
         <tr>
-            <th>ID</th>
-            <th>Название</th>
-            <th>Статус</th>
-            <th>Автор</th>
-            <th>Исполнитель</th>
-            <th>Дата создания</th>
+            <th>{% translate 'ID' %}</th>
+            <th>{% translate 'Name' %}</th>
+            <th>{% translate 'Status' %}Статус</th>
+            <th>{% translate 'Author' %}</th>
+            <th>{% translate 'Executor' %}</th>
+            <th>{% translate 'Created at' %}</th>
             <th></th>
         </tr>
     </thead>
@@ -35,8 +36,8 @@
             <td>{{ task.executor.username }}</td>
             <td>{{ task.created_at }}</td>
             <td>
-                <a class="btn btn-link" href="{% url 'tasks_update' task.id %}">Изменить</a>
-                <a class="btn btn-link" href="{% url 'tasks_delete' task.id %}">Удалить</a>
+                <a class="btn btn-link" href="{% url 'tasks_update' task.id %}">{% translate 'edit' %}</a>
+                <a class="btn btn-link" href="{% url 'tasks_delete' task.id %}">{% translate 'delete' %}</a>
             </td>
         </tr>
         {% endfor %}

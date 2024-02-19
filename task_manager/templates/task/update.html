@@ -1,14 +1,15 @@
 {% extends "base.html" %}
-{% block title %}Менеджер задач Hexlet{% endblock %}
+{% load i18n %}
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
-<h1 class="my-4">Изменение задачи</h1>
+<h1 class="my-4">{% translate 'Change the task' %}</h1>
 <form method="post">
     <div class="card mb-3">
         <div class="card-body bg-light">
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button class="btn btn-primary" type="submit">Изменить</button>
+                <button class="btn btn-primary" type="submit">{% translate 'edit' %}</button>
             </form>
         </div>
     </div>

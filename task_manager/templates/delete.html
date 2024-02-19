@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<h1 class="my-4">{{ body.title }}</h1>
+<p>{{ body.subtitle }}</p>
+<form method="post">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="{{ body.button_value }}">
+</form>
+{% endblock %}

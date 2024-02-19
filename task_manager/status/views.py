@@ -9,6 +9,7 @@ from task_manager.status.forms import StatusForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from task_manager.utils import LoginRequiredMixinWithMessage
+from django.utils.translation import gettext as _
 
 
 class StatusIndexView(LoginRequiredMixinWithMessage, ListView):
@@ -22,14 +23,8 @@ class StatusCreateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, Creat
     form_class = StatusForm
     template_name = 'status/create.html'
     success_url = reverse_lazy('statuses_index')
-    success_message = 'Статус успешно создан'
+    success_message = _('The status has been successfully created')
     login_url = reverse_lazy('login_view')
-
-    def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)
 
 
 class StatusUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, UpdateView):
@@ -37,13 +32,22 @@ class StatusUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, Updat
     form_class = StatusForm
     template_name = 'status/update.html'
     success_url = reverse_lazy('statuses_index')
-    success_message = 'Статус успешно изменен'
+    success_message = _('The status has been successfully changed')
     login_url = '/login/'
 
 
 class StatusDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, DeleteView):
     model = Status
-    template_name = 'status/delete.html'
+    template_name = 'delete.html'
     success_url = reverse_lazy('statuses_index')
-    success_message = 'Статус успешно удален'
+    success_message = _('The status has been successfully deleted')
     login_url = '/login/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('Task Manager – delete a status')
+        body_title = _('Delete a status')
+        body_subtitle = f"{_('Are you sure you want to delete the status')}: {context.get('status').name}"
+        button_value = _('Yes, delete')
+        context['body'] = {'title': body_title, 'subtitle': body_subtitle, 'button_value': button_value}
+        return context

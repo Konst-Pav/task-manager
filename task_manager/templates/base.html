@@ -3,7 +3,6 @@
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-{% bootstrap_messages %}
 {% load i18n %}
     <head>
         <title>{% block title %}{% translate 'Django on Hexlet' %}{% endblock %}</title>
@@ -24,7 +23,7 @@
                 </ul>
                 {% if request.user.is_authenticated %}
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li class="nav-link text-center px-2 text-dark"><a>{{ user.username }}</a></li>
+                    <li class="nav-link text-center px-2 text-dark"><a>{{ request.user.username }}</a></li>
                     <li class="nav-link px-2 text-dark"> | </li>
                     <li>
                         <form action="{% url 'logout' %}" method="POST">
@@ -40,6 +39,7 @@
                 </div>
                 {% endif %}
             </header>
+            {% bootstrap_messages %}
             {% block content %}
             {% endblock %}
         </div>

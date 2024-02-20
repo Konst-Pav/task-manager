@@ -27,3 +27,9 @@ migrate:
 
 shell_plus:
 	poetry run python manage.py shell_plus --ipython
+
+make_messages_ru:
+	poetry run python manage.py makemessages -l ru
+
+compilemessages:
+	poetry run python manage.py compilemessages

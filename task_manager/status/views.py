@@ -8,7 +8,7 @@ from task_manager.status.models import Status
 from task_manager.status.forms import StatusForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from task_manager.utils import LoginRequiredMixinWithMessage
+from task_manager.permissions import LoginRequiredMixinWithMessage
 from django.utils.translation import gettext as _
 
 

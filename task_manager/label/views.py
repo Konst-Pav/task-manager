@@ -2,7 +2,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse, reverse_lazy
-from task_manager.utils import LoginRequiredMixinWithMessage
+from task_manager.permissions import LoginRequiredMixinWithMessage
 from task_manager.label.models import Label
 from task_manager.label.forms import LabelForm
 from task_manager.task.models import Task

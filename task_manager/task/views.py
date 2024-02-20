@@ -7,7 +7,7 @@ from django.urls import reverse, reverse_lazy
 from task_manager.task.models import Task
 from task_manager.task.forms import TaskForm
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.utils import LoginRequiredMixinWithMessage
+from task_manager.permissions import LoginRequiredMixinWithMessage
 from task_manager.task.filters import TaskFilter
 from django_filters.views import FilterView
 from django.utils.translation import gettext as _

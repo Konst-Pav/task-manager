@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django.views import View
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import redirect
@@ -10,11 +8,11 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.db.models import ProtectedError
-from django.core.exceptions import ImproperlyConfigured
 from django.utils.translation import gettext as _
 
 from task_manager.user.forms import RegisterUserForm
 from task_manager.user.forms import LoginUserForm
+from task_manager.permissions import EditingProfilePermissionMixin, LoginRequiredMixinWithMessage
 
 
 class UserIndexView(ListView):
@@ -38,7 +36,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
         return context
 
 
-class UserUpdateView(SuccessMessageMixin, UpdateView):
+class UserUpdateView(LoginRequiredMixinWithMessage, EditingProfilePermissionMixin, UpdateView):
     model = User
     form_class = RegisterUserForm
     template_name = 'update.html'
@@ -53,7 +51,7 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
         return context
 
 
-class UserDeleteView(SuccessMessageMixin, DeleteView):
+class UserDeleteView(LoginRequiredMixinWithMessage, EditingProfilePermissionMixin, DeleteView):
     model = User
     template_name = 'delete.html'
     success_url = reverse_lazy('index_view')

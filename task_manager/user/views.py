@@ -41,9 +41,16 @@ class UserCreateView(SuccessMessageMixin, CreateView):
 class UserUpdateView(SuccessMessageMixin, UpdateView):
     model = User
     form_class = RegisterUserForm
-    template_name = 'user/update.html'
+    template_name = 'update.html'
     success_url = reverse_lazy('users_index')
     success_message = _('The user has been successfully changed')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('Task Manager – update the user profile')
+        body = {'title': _('Change the user'), 'button_value': _('edit')}
+        context['body'] = body
+        return context
 
 
 class UserDeleteView(SuccessMessageMixin, DeleteView):

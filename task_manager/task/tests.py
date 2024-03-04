@@ -14,15 +14,11 @@ class TestTask(TestCase):
             username='user1',
             first_name='Ivan',
             last_name='Petrov',
-            # password1='Parol123',
-            # password2='Parol123',
         )
         user2 = User.objects.create_user(
             username='user2',
             first_name='Tatyana',
             last_name='Sidorova',
-            # password1='Parol123',
-            # password2='Parol123',
         )
         status1 = Status.objects.create(name='status1')
         status2 = Status.objects.create(name='status1')
@@ -57,9 +53,6 @@ class TestTask(TestCase):
                 data_is_correct = False
                 break
         self.assertTrue(data_is_correct)
-
-    def test_task_index_filtered_data(self):
-        self.assertTrue(False)
 
     def test_task_index_login_required(self):
         self.client.logout()

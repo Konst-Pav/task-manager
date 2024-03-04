@@ -13,6 +13,7 @@ from django.utils.translation import gettext as _
 from task_manager.user.forms import RegisterUserForm
 from task_manager.user.forms import LoginUserForm
 from task_manager.permissions import EditingProfilePermissionMixin, LoginRequiredMixinWithMessage
+from task_manager.utils import ProtectedErrorHandlerMixin
 
 
 class UserIndexView(ListView):
@@ -51,12 +52,14 @@ class UserUpdateView(LoginRequiredMixinWithMessage, EditingProfilePermissionMixi
         return context
 
 
-class UserDeleteView(LoginRequiredMixinWithMessage, EditingProfilePermissionMixin, DeleteView):
+class UserDeleteView(LoginRequiredMixinWithMessage, ProtectedErrorHandlerMixin, EditingProfilePermissionMixin, DeleteView):
     model = User
     template_name = 'delete.html'
     success_url = reverse_lazy('index_view')
     error_url = reverse_lazy('index_view')
-    success_message = _('The user was successfully deleted')  # Пользователь успешно удален
+    success_message = _('The user was successfully deleted')
+    error_message = _('It is not possible to delete a user because it is being used')
+    redirect_url = reverse_lazy('users_index')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -67,17 +70,6 @@ class UserDeleteView(LoginRequiredMixinWithMessage, EditingProfilePermissionMixi
         button_value = _('Yes, delete')
         context['body'] = {'title': body_title, 'subtitle': body_subtitle, 'button_value': button_value}
         return context
-
-    def post(self, request, *args, **kwargs):
-        try:
-            return super().post(self, request, *args, **kwargs)
-        except ProtectedError:
-            messages.add_message(
-                request,
-                messages.ERROR,
-                _('It is not possible to delete a user because it is being used'),
-            )
-            return redirect(reverse_lazy('index_view'))
 
 
 class LoginUserView(SuccessMessageMixin, LoginView):

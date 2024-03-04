@@ -10,6 +10,9 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from task_manager.permissions import LoginRequiredMixinWithMessage
 from django.utils.translation import gettext as _
+from django.db.models import ProtectedError
+from django.shortcuts import redirect
+from task_manager.utils import ProtectedErrorHandlerMixin
 
 
 class StatusIndexView(LoginRequiredMixinWithMessage, ListView):
@@ -50,12 +53,14 @@ class StatusUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, Updat
         return context
 
 
-class StatusDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, DeleteView):
+class StatusDeleteView(LoginRequiredMixinWithMessage, ProtectedErrorHandlerMixin, SuccessMessageMixin, DeleteView):
     model = Status
     template_name = 'delete.html'
     success_url = reverse_lazy('statuses_index')
     success_message = _('The status has been successfully deleted')
     login_url = '/login/'
+    error_message = _('It is not possible to delete the status because it is in use')
+    redirect_url = reverse_lazy('statuses_index')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

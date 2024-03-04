@@ -1,10 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User
-from task_manager.label.models import Label
-from task_manager.task.models import Task
-from task_manager.status.models import Status
 from django.core.exceptions import ObjectDoesNotExist
+from task_manager.label.models import Label
 
 
 class TestLabel(TestCase):

@@ -11,6 +11,8 @@ from task_manager.permissions import LoginRequiredMixinWithMessage
 from task_manager.task.filters import TaskFilter
 from django_filters.views import FilterView
 from django.utils.translation import gettext as _
+from django.shortcuts import redirect
+from django.contrib import messages
 
 
 class TaskIndexView(LoginRequiredMixinWithMessage, FilterView):
@@ -78,3 +80,15 @@ class TaskDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, DeleteV
             'button_value': _('Yes, delete'),
         }
         return context
+
+    def post(self, request, *args, **kwargs):
+        task_id = kwargs.get('pk')
+        task_author = Task.objects.get(id=task_id).author
+        if request.user.id == task_author.id:
+            return super().post(self, request, *args, **kwargs)
+        messages.add_message(
+            request,
+            messages.ERROR,
+            _('Only the author of the task can delete it'),
+        )
+        return redirect(reverse_lazy('tasks_index'))

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 
 
 class RegisterUserForm(UserCreationForm):
@@ -26,6 +27,14 @@ class RegisterUserForm(UserCreationForm):
         label=_('Confirm the password'),
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
     )
+
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        if self.instance:
+            if User.objects.exclude(id=self.instance.pk).filter(username__iexact=username).first():
+                return super().clean_username()
+            return username
+        return super().clean_username()
 
     class Meta:
         model = User

@@ -11,7 +11,7 @@ class TaskForm(ModelForm):
     executors = User.objects.all()
 
     name = forms.CharField(
-        label=_('Task name'),
+        label=_('Name'),
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Name')}),
     )
     description = forms.CharField(

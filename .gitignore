@@ -9,4 +9,3 @@ coverage.xml
 .idea
 .env
 db.sqlite3
-/logs/

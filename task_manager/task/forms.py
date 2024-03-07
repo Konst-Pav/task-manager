@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.models import User
 from task_manager.status.models import Status
 from task_manager.label.models import Label
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 
 class TaskForm(ModelForm):

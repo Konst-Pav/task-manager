@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["kpavlov <k.pavlov.reg@yandex.ru>"]
 readme = "README.md"
-package-mode = false
+
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -15,6 +15,7 @@ python-dotenv = "^1.0.0"
 django-filter = "^23.5"
 django-extensions = "^3.2.3"
 dj-database-url = "^2.1.0"
+psycopg2-binary = "^2.9.9"
 
 
 [tool.poetry.group.dev.dependencies]

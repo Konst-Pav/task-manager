@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('secret_key')
 
-DEBUG = os.getenv('debug')
+DEBUG = os.environ.get('debug') == True
 
 ALLOWED_HOSTS = ['127.0.0.1', os.getenv('webserver')]
 

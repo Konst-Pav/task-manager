@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.db.models import ProtectedError
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 from task_manager.user.forms import RegisterUserForm
 from task_manager.user.forms import LoginUserForm

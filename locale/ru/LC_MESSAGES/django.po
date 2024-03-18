@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-07 09:54+0000\n"
+"POT-Creation-Date: 2024-03-18 09:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,9 +20,9 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: task_manager/label/forms.py:9 task_manager/label/forms.py:10
-#: task_manager/status/forms.py:9 task_manager/status/forms.py:10
-#: task_manager/task/forms.py:14 task_manager/task/forms.py:15
+#: task_manager/label/forms.py:9 task_manager/label/forms.py:11
+#: task_manager/status/forms.py:9 task_manager/status/forms.py:11
+#: task_manager/task/forms.py:14 task_manager/task/forms.py:16
 #: task_manager/templates/label/index.html:10
 #: task_manager/templates/status/index.html:10
 #: task_manager/templates/task/index.html:21 task_manager/user/forms.py:15
@@ -41,7 +41,7 @@ msgstr "Метка успешно создана"
 msgid "Task Manager – create a label"
 msgstr "Менеджер задач – создание метки"
 
-#: task_manager/label/views.py:35
+#: task_manager/label/views.py:35 task_manager/templates/label/index.html:5
 msgid "Create a label"
 msgstr "Создать метку"
 
@@ -108,7 +108,7 @@ msgstr "Статус успешно создан"
 msgid "Task Manager – create a status"
 msgstr "Менеджер задач – создание статуса"
 
-#: task_manager/status/views.py:35
+#: task_manager/status/views.py:35 task_manager/templates/status/index.html:5
 msgid "Create a status"
 msgstr "Создать статус"
 
@@ -140,27 +140,27 @@ msgstr "Менеджер задач – удаление статуса"
 msgid "Delete a status"
 msgstr "Удаление статуса"
 
-#: task_manager/task/filters.py:14 task_manager/task/forms.py:30
+#: task_manager/task/filters.py:14 task_manager/task/forms.py:33
 #: task_manager/templates/task/index.html:22
 #: task_manager/templates/task/read.html:23
 msgid "Status"
 msgstr "Статусы"
 
-#: task_manager/task/filters.py:19 task_manager/task/forms.py:24
+#: task_manager/task/filters.py:20 task_manager/task/forms.py:26
 #: task_manager/templates/task/index.html:24
 #: task_manager/templates/task/read.html:19
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/task/filters.py:24 task_manager/task/forms.py:35
+#: task_manager/task/filters.py:26 task_manager/task/forms.py:39
 msgid "Label"
 msgstr "Метка"
 
-#: task_manager/task/filters.py:30
+#: task_manager/task/filters.py:34
 msgid "Only your own tasks"
 msgstr "Только свои задачи"
 
-#: task_manager/task/forms.py:18 task_manager/task/forms.py:20
+#: task_manager/task/forms.py:19 task_manager/task/forms.py:22
 msgid "Description"
 msgstr "Описание"
 
@@ -172,7 +172,7 @@ msgstr "Задача успешно создана"
 msgid "Task Manager – create a task"
 msgstr "Менеджер задач – создание задачи"
 
-#: task_manager/task/views.py:35
+#: task_manager/task/views.py:35 task_manager/templates/task/index.html:7
 msgid "Create a task"
 msgstr "Создать задачу"
 
@@ -241,7 +241,7 @@ msgstr "Выйти"
 #: task_manager/templates/base.html:37 task_manager/templates/login.html:5
 #: task_manager/templates/login.html:10
 msgid "Login"
-msgstr "Вход"
+msgstr "Войти"
 
 #: task_manager/templates/base.html:38 task_manager/user/views.py:35
 msgid "Registration"
@@ -254,12 +254,6 @@ msgstr "Практические курсы по программировани�
 #: task_manager/templates/index.html:12
 msgid "To learn more"
 msgstr "Узнать больше"
-
-#: task_manager/templates/label/index.html:5
-#: task_manager/templates/status/index.html:5
-#: task_manager/templates/task/index.html:7
-msgid "Create"
-msgstr "Создать"
 
 #: task_manager/templates/label/index.html:9
 #: task_manager/templates/status/index.html:9
@@ -300,8 +294,9 @@ msgstr "Просмотр задачи"
 msgid "Labels:"
 msgstr "Метки"
 
-#: task_manager/templates/user/index.html:10 task_manager/user/forms.py:11
-#: task_manager/user/forms.py:43 task_manager/user/forms.py:52
+#: task_manager/templates/user/index.html:10 task_manager/user/forms.py:10
+#: task_manager/user/forms.py:12 task_manager/user/forms.py:50
+#: task_manager/user/forms.py:52
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -313,28 +308,28 @@ msgstr "Полное имя"
 msgid "Registration date"
 msgstr "Дата создания"
 
-#: task_manager/user/forms.py:19
-msgid "Surname"
-msgstr "Фамилия"
-
-#: task_manager/user/forms.py:23 task_manager/user/forms.py:46
-#: task_manager/user/forms.py:53
-msgid "Password"
-msgstr "Пароль"
-
-#: task_manager/user/forms.py:27
-msgid "Confirm the password"
-msgstr "Подтверждение пароля"
-
-#: task_manager/user/forms.py:44
+#: task_manager/user/forms.py:17
 msgid "Your name"
 msgstr "Имя"
 
-#: task_manager/user/forms.py:45
+#: task_manager/user/forms.py:20
+msgid "Surname"
+msgstr "Фамилия"
+
+#: task_manager/user/forms.py:22
 msgid "Your last name"
 msgstr "Фамилия"
 
-#: task_manager/user/forms.py:47
+#: task_manager/user/forms.py:25 task_manager/user/forms.py:27
+#: task_manager/user/forms.py:55 task_manager/user/forms.py:57
+msgid "Password"
+msgstr "Пароль"
+
+#: task_manager/user/forms.py:30
+msgid "Confirm the password"
+msgstr "Подтверждение пароля"
+
+#: task_manager/user/forms.py:32
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
@@ -397,9 +392,3 @@ msgstr "Привет, мир!"
 #: task_manager/views.py:9
 msgid "Hexlet Task Manager"
 msgstr "Менеджер задач Хекслет"
-
-#~ msgid "Label name"
-#~ msgstr "Метки"
-
-#~ msgid "Task name"
-#~ msgstr "Название задачи"

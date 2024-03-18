@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 class StatusForm(ModelForm):
     name = forms.CharField(
         label=_('Name'),
+        label_suffix='',
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Name')}),
     )
 

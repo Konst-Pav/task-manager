@@ -4,7 +4,7 @@
 {% block content %}
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
-<h1 class="my-4">{% translate 'Tasks' %}<a class="btn btn-primary mx-4" href="{% url 'tasks_create' %}">{% translate 'Create' %}</a></h1>
+<h1 class="my-4">{% translate 'Tasks' %}<a class="btn btn-primary mx-4" href="{% url 'tasks_create' %}">{% translate 'Create a task' %}</a></h1>
 <div class="card mb-3">
     <div class="card-body bg-light">
         <form class="form-inline center mb-3" action="{% url 'tasks_index' %}">

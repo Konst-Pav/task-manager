@@ -56,6 +56,6 @@ class LoginUserForm(AuthenticationForm):
     )
     password = forms.CharField(
         label=_('Password'),
-        # label_suffix='',
+        label_suffix='',
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Password'), 'label_suffix': ''})
     )

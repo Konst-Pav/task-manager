@@ -75,7 +75,7 @@ class UserDeleteView(LoginRequiredMixinWithMessage, ProtectedErrorHandlerMixin, 
 class LoginUserView(SuccessMessageMixin, LoginView):
     form_class = LoginUserForm
     template_name = 'login.html'
-    next_page = reverse_lazy('users_index')
+    next_page = reverse_lazy('index_view')
     success_message = _('You are logged in')
 
     def get_context_data(self, **kwargs):

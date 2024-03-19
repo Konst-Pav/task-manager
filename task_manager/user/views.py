@@ -53,10 +53,10 @@ class UserUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, Editing
         return context
 
 
-class UserDeleteView(LoginRequiredMixinWithMessage, ProtectedErrorHandlerMixin, EditingProfilePermissionMixin, DeleteView):
+class UserDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, ProtectedErrorHandlerMixin, EditingProfilePermissionMixin, DeleteView):
     model = User
     template_name = 'delete.html'
-    success_url = reverse_lazy('index_view')
+    success_url = reverse_lazy('users_index')
     error_url = reverse_lazy('index_view')
     success_message = _('The user was successfully deleted')
     error_message = _('It is not possible to delete a user because it is being used')

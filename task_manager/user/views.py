@@ -86,5 +86,5 @@ class LoginUserView(SuccessMessageMixin, LoginView):
 
 def logout_user(request):
     logout(request)
-    messages.success(request, _('You are logged out'))
+    messages.info(request, _('You are logged out'))
     return redirect('index_view')

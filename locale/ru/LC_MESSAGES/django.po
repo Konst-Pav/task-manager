@@ -144,7 +144,7 @@ msgstr "Удаление статуса"
 #: task_manager/templates/task/index.html:22
 #: task_manager/templates/task/read.html:23
 msgid "Status"
-msgstr "Статусы"
+msgstr "Статус"
 
 #: task_manager/task/filters.py:20 task_manager/task/forms.py:26
 #: task_manager/templates/task/index.html:24

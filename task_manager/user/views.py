@@ -9,6 +9,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.db.models import ProtectedError
 from django.utils.translation import gettext_lazy as _
+from django.contrib import messages
 
 from task_manager.user.forms import RegisterUserForm
 from task_manager.user.forms import LoginUserForm
@@ -37,7 +38,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
         return context
 
 
-class UserUpdateView(LoginRequiredMixinWithMessage, EditingProfilePermissionMixin, UpdateView):
+class UserUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, EditingProfilePermissionMixin, UpdateView):
     model = User
     form_class = RegisterUserForm
     template_name = 'update.html'

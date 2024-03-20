@@ -8,7 +8,7 @@ from django.urls import reverse
 class TestStatus(TestCase):
 
     def setUp(self):
-        self.client.force_login(User.objects.get_or_create(username='testuser')[0])
+        self.client.force_login(User.objects.get_or_create(username='testuser')[0])  # noqa: E501
 
     def test_status_index(self):
         response = self.client.get('/statuses/')

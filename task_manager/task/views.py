@@ -19,7 +19,11 @@ class TaskIndexView(LoginRequiredMixinWithMessage, FilterView):
     filterset_fields = ['executor', 'status', 'label']
 
 
-class TaskCreateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, CreateView):
+class TaskCreateView(
+    LoginRequiredMixinWithMessage,
+    SuccessMessageMixin,
+    CreateView,
+):
     model = Task
     form_class = TaskForm
     template_name = 'create.html'
@@ -45,7 +49,11 @@ class TaskReadView(LoginRequiredMixinWithMessage, DetailView):
     context_object_name = 'task'
 
 
-class TaskUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, UpdateView):
+class TaskUpdateView(
+    LoginRequiredMixinWithMessage,
+    SuccessMessageMixin,
+    UpdateView,
+):
     model = Task
     form_class = TaskForm
     template_name = 'update.html'
@@ -61,7 +69,11 @@ class TaskUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, UpdateV
         return context
 
 
-class TaskDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, DeleteView):
+class TaskDeleteView(
+    LoginRequiredMixinWithMessage,
+    SuccessMessageMixin,
+    DeleteView,
+):
     model = Task
     template_name = 'delete.html'
     success_url = reverse_lazy('tasks_index')
@@ -73,7 +85,7 @@ class TaskDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, DeleteV
         context['title'] = _('Task Manager – delete a task')
         context['body'] = {
             'title': _('Delete a task'),
-            'subtitle': f"{_('Are you sure you want to delete the task')}: {context['task'].name}",
+            'subtitle': f"{_('Are you sure you want to delete the task')}: {context['task'].name}",  # noqa: E501
             'button_value': _('Yes, delete'),
         }
         return context

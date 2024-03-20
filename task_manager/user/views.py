@@ -11,7 +11,7 @@ from django.contrib import messages
 
 from task_manager.user.forms import RegisterUserForm
 from task_manager.user.forms import LoginUserForm
-from task_manager.permissions import EditingProfilePermissionMixin, LoginRequiredMixinWithMessage
+from task_manager.permissions import EditingProfilePermissionMixin, LoginRequiredMixinWithMessage  # noqa:E501
 from task_manager.utils import ProtectedErrorHandlerMixin
 
 
@@ -36,7 +36,12 @@ class UserCreateView(SuccessMessageMixin, CreateView):
         return context
 
 
-class UserUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, EditingProfilePermissionMixin, UpdateView):
+class UserUpdateView(
+    LoginRequiredMixinWithMessage,
+    SuccessMessageMixin,
+    EditingProfilePermissionMixin,
+    UpdateView
+):
     model = User
     form_class = RegisterUserForm
     template_name = 'update.html'
@@ -51,23 +56,33 @@ class UserUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, Editing
         return context
 
 
-class UserDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, ProtectedErrorHandlerMixin, EditingProfilePermissionMixin, DeleteView):
+class UserDeleteView(
+    LoginRequiredMixinWithMessage,
+    SuccessMessageMixin,
+    ProtectedErrorHandlerMixin,
+    EditingProfilePermissionMixin,
+    DeleteView,
+):
     model = User
     template_name = 'delete.html'
     success_url = reverse_lazy('users_index')
     error_url = reverse_lazy('index_view')
     success_message = _('The user was successfully deleted')
-    error_message = _('It is not possible to delete a user because it is being used')
+    error_message = _('It is not possible to delete a user because it is being used')  # noqa:E501
     redirect_url = reverse_lazy('users_index')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = _('Task Manager – delete a user')
-        user_full_name = f"{context.get('user').first_name} {context.get('user').last_name}"
+        user_full_name = f"{context.get('user').first_name} {context.get('user').last_name}"  # noqa:E501
         body_title = _('Delete a user')
-        body_subtitle = f"{_('Are you sure you want to delete the user')}: {user_full_name}"
+        body_subtitle = f"{_('Are you sure you want to delete the user')}: {user_full_name}"  # noqa:E501
         button_value = _('Yes, delete')
-        context['body'] = {'title': body_title, 'subtitle': body_subtitle, 'button_value': button_value}
+        context['body'] = {
+            'title': body_title,
+            'subtitle': body_subtitle,
+            'button_value': button_value,
+        }
         return context
 
 

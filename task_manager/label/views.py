@@ -22,7 +22,11 @@ class LabelIndexView(LoginRequiredMixinWithMessage, ListView):
         return context
 
 
-class LabelCreateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, CreateView):
+class LabelCreateView(
+    LoginRequiredMixinWithMessage,
+    SuccessMessageMixin,
+    CreateView,
+):
     model = Label
     form_class = LabelForm
     template_name = 'create.html'
@@ -37,7 +41,11 @@ class LabelCreateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, Create
         return context
 
 
-class LabelUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, UpdateView):
+class LabelUpdateView(
+    LoginRequiredMixinWithMessage,
+    SuccessMessageMixin,
+    UpdateView,
+):
     model = Label
     template_name = 'update.html'
     form_class = LabelForm
@@ -53,7 +61,11 @@ class LabelUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, Update
         return context
 
 
-class LabelDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, DeleteView):
+class LabelDeleteView(
+    LoginRequiredMixinWithMessage,
+    SuccessMessageMixin,
+    DeleteView,
+):
     model = Label
     template_name = 'delete.html'
     success_url = reverse_lazy('labels_index')
@@ -64,9 +76,13 @@ class LabelDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, Delete
         context = super().get_context_data(**kwargs)
         context['title'] = _('Task Manager – delete a label')
         body_title = _('Delete a label')
-        body_subtitle = f"{_('Are you sure you want to delete the label')}: {context.get('label').name}"
+        body_subtitle = f"{_('Are you sure you want to delete the label')}: {context.get('label').name}"  # noqa: E501
         button_value = _('Yes, delete')
-        context['body'] = {'title': body_title, 'subtitle': body_subtitle, 'button_value': button_value}
+        context['body'] = {
+            'title': body_title,
+            'subtitle': body_subtitle,
+            'button_value': button_value,
+        }
         return context
 
     def post(self, request, *args, **kwargs):
@@ -75,7 +91,7 @@ class LabelDeleteView(LoginRequiredMixinWithMessage, SuccessMessageMixin, Delete
             messages.add_message(
                 request,
                 messages.ERROR,
-                _('It is not possible to delete the label because it is being used'),
+                _('It is not possible to delete the label because it is being used'),  # noqa: E501
             )
             return redirect(reverse_lazy('labels_index'))
         return super().post(request, *args, **kwargs)

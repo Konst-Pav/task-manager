@@ -12,13 +12,24 @@ class TaskForm(ModelForm):
     name = forms.CharField(
         label=_('Name'),
         label_suffix='',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Name')}),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Name'),
+            }
+        ),
     )
     description = forms.CharField(
         label=_('Description'),
         label_suffix='',
         required=False,
-        widget=forms.Textarea(attrs={'class': 'form-control', 'style': 'resize:none', 'placeholder': _('Description')}),
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+                'style': 'resize:none',
+                'placeholder': _('Description'),
+            }
+        ),
     )
     executor = UserModelChoiceField(
         queryset=User.objects.all(),
@@ -37,7 +48,12 @@ class TaskForm(ModelForm):
         queryset=Label.objects.all(),
         label=_('Labels'),
         label_suffix='',
-        widget=forms.SelectMultiple(attrs={'class': 'form-select', 'multiply': 'multiply'}),
+        widget=forms.SelectMultiple(
+            attrs={
+                'class': 'form-select',
+                'multiply': 'multiply',
+            }
+        ),
         required=False,
     )
 

@@ -15,7 +15,11 @@ class StatusIndexView(LoginRequiredMixinWithMessage, ListView):
     context_object_name = 'statuses'
 
 
-class StatusCreateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, CreateView):
+class StatusCreateView(
+    LoginRequiredMixinWithMessage,
+    SuccessMessageMixin,
+    CreateView,
+):
     model = Status
     form_class = StatusForm
     template_name = 'create.html'
@@ -31,7 +35,11 @@ class StatusCreateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, Creat
         return context
 
 
-class StatusUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, UpdateView):
+class StatusUpdateView(
+    LoginRequiredMixinWithMessage,
+    SuccessMessageMixin,
+    UpdateView,
+):
     model = Status
     form_class = StatusForm
     template_name = 'update.html'
@@ -47,20 +55,29 @@ class StatusUpdateView(LoginRequiredMixinWithMessage, SuccessMessageMixin, Updat
         return context
 
 
-class StatusDeleteView(LoginRequiredMixinWithMessage, ProtectedErrorHandlerMixin, SuccessMessageMixin, DeleteView):
+class StatusDeleteView(
+    LoginRequiredMixinWithMessage,
+    ProtectedErrorHandlerMixin,
+    SuccessMessageMixin,
+    DeleteView,
+):
     model = Status
     template_name = 'delete.html'
     success_url = reverse_lazy('statuses_index')
     success_message = _('The status has been successfully deleted')
     login_url = '/login/'
-    error_message = _('It is not possible to delete the status because it is in use')
+    error_message = _('It is not possible to delete the status because it is in use')  # noqa: E501
     redirect_url = reverse_lazy('statuses_index')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = _('Task Manager – delete a status')
         body_title = _('Delete a status')
-        body_subtitle = f"{_('Are you sure you want to delete the status')}: {context.get('status').name}"
+        body_subtitle = f"{_('Are you sure you want to delete the status')}: {context.get('status').name}"  # noqa: E501
         button_value = _('Yes, delete')
-        context['body'] = {'title': body_title, 'subtitle': body_subtitle, 'button_value': button_value}
+        context['body'] = {
+            'title': body_title,
+            'subtitle': body_subtitle,
+            'button_value': button_value,
+        }
         return context

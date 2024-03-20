@@ -58,7 +58,7 @@ class TestUserViews(TestCase):
     def test_user_update_login_required(self):
         self.client.logout()
         response = self.client.get(reverse('users_update', args=[1]))
-        redirect_path = f'{reverse("login_view")}?next={reverse("users_update", args=[1])}'
+        redirect_path = f'{reverse("login_view")}?next={reverse("users_update", args=[1])}'  # noqa:E501
         self.assertRedirects(response, expected_url=redirect_path)
 
     def test_user_delete_page_is_available(self):
@@ -77,5 +77,5 @@ class TestUserViews(TestCase):
     def test_user_delete_login_required(self):
         self.client.logout()
         response = self.client.get(reverse('users_delete', args=[1]))
-        redirect_path = f'{reverse("login_view")}?next={reverse("users_delete", args=[1])}'
+        redirect_path = f'{reverse("login_view")}?next={reverse("users_delete", args=[1])}'  # noqa:E501
         self.assertRedirects(response, expected_url=redirect_path)

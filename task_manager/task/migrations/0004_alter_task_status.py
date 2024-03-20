@@ -15,6 +15,10 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='task',
             name='status',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='status.status'),
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.PROTECT,
+                to='status.status',
+            ),
         ),
     ]

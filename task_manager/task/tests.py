@@ -9,7 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 class TestTask(TestCase):
 
     def setUp(self):
-        self.client.force_login(User.objects.get_or_create(username='testuser')[0])
+        self.client.force_login(User.objects.get_or_create(username='testuser')[0])  # noqa: E501
         user1 = User.objects.create_user(
             username='user1',
             first_name='Ivan',
@@ -57,7 +57,7 @@ class TestTask(TestCase):
     def test_task_index_login_required(self):
         self.client.logout()
         response = self.client.get(reverse('tasks_index'))
-        redirect_path = f'{reverse("login_view")}?next={reverse("tasks_index")}'
+        redirect_path = f'{reverse("login_view")}?next={reverse("tasks_index")}'  # noqa: E501
         self.assertRedirects(response, expected_url=redirect_path)
 
     def test_task_create_page_is_available(self):
@@ -67,7 +67,7 @@ class TestTask(TestCase):
     def test_task_create_login_required(self):
         self.client.logout()
         response = self.client.get(reverse('tasks_create'))
-        redirect_path = f'{reverse("login_view")}?next={reverse("tasks_create")}'
+        redirect_path = f'{reverse("login_view")}?next={reverse("tasks_create")}'  # noqa: E501
         self.assertRedirects(response, expected_url=redirect_path)
 
     def test_task_create_task_created(self):
@@ -112,7 +112,7 @@ class TestTask(TestCase):
     def test_task_read_login_required(self):
         self.client.logout()
         response = self.client.get(reverse('tasks_read', args=[1]))
-        redirect_path = f'{reverse("login_view")}?next={reverse("tasks_read", args=[1])}'
+        redirect_path = f'{reverse("login_view")}?next={reverse("tasks_read", args=[1])}'  # noqa: E501
         self.assertRedirects(response, expected_url=redirect_path)
 
     def test_task_update_page_is_available(self):
@@ -122,7 +122,7 @@ class TestTask(TestCase):
     def test_task_update_login_required(self):
         self.client.logout()
         response = self.client.get(reverse('tasks_update', args=[1]))
-        redirect_path = f'{reverse("login_view")}?next={reverse("tasks_update", args=[1])}'
+        redirect_path = f'{reverse("login_view")}?next={reverse("tasks_update", args=[1])}'  # noqa: E501
         self.assertRedirects(response, expected_url=redirect_path)
 
     def test_task_update_task_updated(self):
@@ -140,7 +140,7 @@ class TestTask(TestCase):
             'executor': 2,
             'status': 2,
         }
-        self.client.post(reverse_lazy('tasks_update', args=[task_obj.id]), data=new_data)
+        self.client.post(reverse_lazy('tasks_update', args=[task_obj.id]), data=new_data)  # noqa: E501
         updated_task_obj = Task.objects.get(id=task_obj.id)
         self.assertEqual(new_data['name'], updated_task_obj.name)
         self.assertEqual(new_data['description'], updated_task_obj.description)
@@ -154,13 +154,13 @@ class TestTask(TestCase):
     def test_task_delete_login_required(self):
         self.client.logout()
         response = self.client.get(reverse('tasks_delete', args=[1]))
-        redirect_path = f'{reverse("login_view")}?next={reverse("tasks_delete", args=[1])}'
+        redirect_path = f'{reverse("login_view")}?next={reverse("tasks_delete", args=[1])}'  # noqa: E501
         self.assertRedirects(response, expected_url=redirect_path)
 
     def test_task_delete_task_deleted(self):
         author = User.objects.get(id=1)
         status = Status.objects.get(id=1)
-        task_obj = Task.objects.create(name='Test task', author=author, status=status)
+        task_obj = Task.objects.create(name='Test task', author=author, status=status)  # noqa: E501
         self.client.post(reverse_lazy('tasks_delete', args=[task_obj.id]))
         try:
             Task.objects.get(id=task_obj.id)

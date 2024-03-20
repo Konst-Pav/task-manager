@@ -8,6 +8,15 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 
 
+class UserModelChoiceField(forms.models.ModelChoiceField):
+    def label_from_instance(self, obj):
+         return obj.get_full_name()
+
+
+class UserModelChoiceFilter(django_filters.ModelChoiceFilter):
+    field_class = UserModelChoiceField
+
+
 class TaskFilter(django_filters.FilterSet):
     status = filters.ModelChoiceFilter(
         queryset=Status.objects.all(),
@@ -15,7 +24,7 @@ class TaskFilter(django_filters.FilterSet):
         label_suffix='',
         widget=forms.Select(attrs={'class': 'form-select'}),
     )
-    executor = filters.ModelChoiceFilter(
+    executor = UserModelChoiceFilter(
         queryset=User.objects.all(),
         label=_('Executor'),
         label_suffix='',

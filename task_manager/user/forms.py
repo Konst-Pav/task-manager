@@ -5,6 +5,11 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import gettext_lazy as _
 
 
+class UserModelChoiceField(forms.models.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.get_full_name()
+
+
 class RegisterUserForm(UserCreationForm):
     username = forms.CharField(
         label=_('Username'),

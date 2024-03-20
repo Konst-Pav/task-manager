@@ -5,11 +5,10 @@ from django.contrib.auth.models import User
 from task_manager.status.models import Status
 from task_manager.label.models import Label
 from django.utils.translation import gettext_lazy as _
+from task_manager.user.forms import UserModelChoiceField
 
 
 class TaskForm(ModelForm):
-    executors = User.objects.all()
-
     name = forms.CharField(
         label=_('Name'),
         label_suffix='',
@@ -21,7 +20,7 @@ class TaskForm(ModelForm):
         required=False,
         widget=forms.Textarea(attrs={'class': 'form-control', 'style': 'resize:none', 'placeholder': _('Description')}),
     )
-    executor = forms.ModelChoiceField(
+    executor = UserModelChoiceField(
         queryset=User.objects.all(),
         label=_('Executor'),
         label_suffix='',

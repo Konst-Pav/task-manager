@@ -32,16 +32,15 @@ class TaskFilter(django_filters.FilterSet):
         label_suffix='',
         widget=forms.Select(attrs={'class': 'form-select'}),
     )
-    user_tasks = django_filters.BooleanFilter(
+    self_tasks = django_filters.BooleanFilter(
         field_name='author',
-        label='',
+        label=_('Only your own tasks'),
         label_suffix='',
-        help_text=_('Only your own tasks'),
-        method='filter_user_tasks',
-        widget=forms.CheckboxInput(),
+        method='filter_self_tasks',
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}),
     )
 
-    def filter_user_tasks(self, queryset, name, value):
+    def filter_self_tasks(self, queryset, name, value):
         if value:
             user_id = self.request.user.id
             return queryset.filter(author_id=user_id)
@@ -49,4 +48,4 @@ class TaskFilter(django_filters.FilterSet):
 
     class Meta:
         model = Task
-        fields = ['status', 'executor', 'labels', 'user_tasks']
+        fields = ['status', 'executor', 'labels', 'self_tasks']

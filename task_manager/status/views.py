@@ -1,17 +1,11 @@
-from django.shortcuts import render
-from django.views import View
 from django.views.generic.list import ListView
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.http import HttpResponse
 from task_manager.status.models import Status
 from task_manager.status.forms import StatusForm
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib import messages
 from task_manager.permissions import LoginRequiredMixinWithMessage
 from django.utils.translation import gettext as _
-from django.db.models import ProtectedError
-from django.shortcuts import redirect
 from task_manager.utils import ProtectedErrorHandlerMixin
 
 

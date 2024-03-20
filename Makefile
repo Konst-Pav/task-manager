@@ -33,3 +33,6 @@ make_messages_ru:
 
 compilemessages:
 	poetry run python manage.py compilemessages
+
+lint:
+	poetry run flake8 task_manager

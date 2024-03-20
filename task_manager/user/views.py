@@ -6,8 +6,6 @@ from django.views.generic.list import ListView
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib import messages
-from django.db.models import ProtectedError
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 

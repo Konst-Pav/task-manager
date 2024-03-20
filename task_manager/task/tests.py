@@ -22,14 +22,14 @@ class TestTask(TestCase):
         )
         status1 = Status.objects.create(name='status1')
         status2 = Status.objects.create(name='status1')
-        task1 = Task.objects.create(
+        Task.objects.create(
             name='task1_name',
             description='description',
             executor=user1,
             status=status1,
             author=user2,
         )
-        task2 = Task.objects.create(
+        Task.objects.create(
             name='task2_name',
             description='description',
             executor=user2,

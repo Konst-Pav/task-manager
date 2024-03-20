@@ -2,7 +2,7 @@ from django.test import TestCase
 from task_manager.status.models import Status
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse
 
 
 class TestStatus(TestCase):
@@ -31,7 +31,7 @@ class TestStatus(TestCase):
         status_obj.save()
         response = self.client.post('/statuses/1/delete/')
         try:
-            status_object = Status.objects.get(id=1)
+            Status.objects.get(id=1)
             object_deleted = False
         except ObjectDoesNotExist:
             object_deleted = True

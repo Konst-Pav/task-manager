@@ -91,7 +91,13 @@ class TestTask(TestCase):
 
     def test_task_read_data_is_correct(self):
         task_obj = Task.objects.get(id=1)
-        task_data = [task_obj.name, task_obj.description, task_obj.executor, task_obj.status, task_obj.author]
+        task_data = [
+            task_obj.name,
+            task_obj.description,
+            task_obj.executor.get_full_name(),
+            task_obj.status,
+            task_obj.author.get_full_name()
+        ]
         response = self.client.get(reverse('tasks_read', args=[1]))
         content = response.content.decode()
         data_is_correct = False

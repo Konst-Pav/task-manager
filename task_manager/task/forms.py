@@ -35,7 +35,7 @@ class TaskForm(ModelForm):
     )
     labels = forms.ModelMultipleChoiceField(
         queryset=Label.objects.all(),
-        label=_('Label'),
+        label=_('Labels'),
         label_suffix='',
         widget=forms.SelectMultiple(attrs={'class': 'form-select', 'multiply': 'multiply'}),
         required=False,

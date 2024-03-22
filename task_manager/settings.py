@@ -9,7 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = True if os.environ.get('DEBUG') == 'True' else False
+# DEBUG = True if os.environ.get('DEBUG') == 'True' else False
+DEBUG = os.environ.get('DEBUG') == True
 
 ALLOWED_HOSTS = ['127.0.0.1', os.getenv('webserver'), 'webserver']
 

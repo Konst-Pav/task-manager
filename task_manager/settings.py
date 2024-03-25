@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = os.getenv('DEBUG', 'True') == 'False'
 # DEBUG = False if os.environ.get('DEBUG') == 'False' else True
 # if os.environ.get('DEBUG') == 'True':
 #     debug_mode = True

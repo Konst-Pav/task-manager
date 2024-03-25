@@ -4,6 +4,13 @@ run_server:
 test:
 	poetry run python manage.py test
 
+test_coverage:
+	poetry run coverage run --source='.' manage.py test task_manager
+	poetry run coverage report
+
+install:
+	poetry install
+
 test_status:
 	poetry run python manage.py test task_manager.status
 

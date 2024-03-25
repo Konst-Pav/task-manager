@@ -30,7 +30,7 @@ jobs:
           make test_coverage
 
       - name: Run code coverage
-        uses: paambaati/codeclimate-action@3.2.0
+        uses: paambaati/codeclimate-action@5.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}

@@ -28,5 +28,5 @@ jobs:
           make test
           make test_coverage
 
-      - name: Run linter
+      - name: Run linter flake8
         run: make lint

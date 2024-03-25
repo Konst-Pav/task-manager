@@ -10,19 +10,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = os.getenv('DEBUG', 'True') == 'False'
-# DEBUG = False if os.environ.get('DEBUG') == 'False' else True
-# if os.environ.get('DEBUG') == 'True':
-#     debug_mode = True
-# else:
-#     debug_mode = False
-#
-# DEBUG = debug_mode
-# DEBUG = True if os.environ.get('DEBUG') == 'True' else False
-# DEBUG = os.environ.get('DEBUG') == True  # noqa: E712
-# DEBUG = True
-# DEBUG = False
-# DEBUG = True if os.environ.get('DEBUG') else False
-# DEBUG = True if os.getenv('DEBUG') == 'True' else False
 
 ALLOWED_HOSTS = ['127.0.0.1', os.getenv('webserver'), 'webserver']
 
@@ -102,7 +89,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'ru'
 
 LANGUAGES = [
-    # ('en', 'English'),
+    ('en', 'English'),
     ('ru', 'Russian'),
 ]
 

@@ -6,10 +6,14 @@
 {% load i18n %}
 <div class="card">
     <div class="card-body p-5 bg-light">
-        <div class="display-4">{{ greetings }}</div>
-        <p class="lead">{% translate 'Practical programming courses' %}</p>
+        <div class="display-4">{% translate 'Task Manager' %}</div>
+        <p class="lead">{% translate 'Simple and flexible task management web application' %}</p>
         <hr>
-        <a class="btn btn-primary btn-lg" href="https://ru.hexlet.io">{% translate 'To learn more' %}</a>
+        {% if request.user.is_authenticated %}
+        <a class="btn btn-primary btn-lg" href="{% url 'tasks_index' %}">{% translate 'Get Started' %}</a>
+        {% else %}
+        <a class="btn btn-primary btn-lg" href="{% url 'login_view' %}">{% translate 'Get Started' %}</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

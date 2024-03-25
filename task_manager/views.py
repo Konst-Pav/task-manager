@@ -5,10 +5,10 @@ from django.utils.translation import gettext as _
 
 class IndexView(View):
     def get(self, request, *args, **kwargs):
-        greetings = _('Hello world!')
-        title = _('Hexlet Task Manager')
+        greetings = _('Task manager')
+        title = _('Simple and flexible task management web application')
         return render(
             request,
             'index.html',
-            {'greetings': greetings, 'title': title}
+            {'title': title}
         )

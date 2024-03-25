@@ -13,7 +13,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # DEBUG = os.environ.get('DEBUG') == True  # noqa: E712
 # DEBUG = True
 # DEBUG = False
-DEBUG = True if os.environ.get('DEBUG') else False
+# DEBUG = True if os.environ.get('DEBUG') else False
+DEBUG = True if os.getenv('DEBUG') == 'True' else False
 
 ALLOWED_HOSTS = ['127.0.0.1', os.getenv('webserver'), 'webserver']
 

@@ -9,13 +9,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+DEBUG = os.environ.get('DEBUG')
 # DEBUG = False if os.environ.get('DEBUG') == 'False' else True
-if os.environ.get('DEBUG') == 'True':
-    debug_mode = True
-else:
-    debug_mode = False
-
-DEBUG = debug_mode
+# if os.environ.get('DEBUG') == 'True':
+#     debug_mode = True
+# else:
+#     debug_mode = False
+#
+# DEBUG = debug_mode
 # DEBUG = True if os.environ.get('DEBUG') == 'True' else False
 # DEBUG = os.environ.get('DEBUG') == True  # noqa: E712
 # DEBUG = True

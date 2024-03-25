@@ -3,6 +3,7 @@
 [![Actions Status](https://github.com/Konst-Pav/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Konst-Pav/python-project-52/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/283a61003643f7eec2bf/maintainability)](https://codeclimate.com/github/Konst-Pav/python-project-52/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/283a61003643f7eec2bf/test_coverage)](https://codeclimate.com/github/Konst-Pav/python-project-52/test_coverage)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 The application was created using the Django framework. Allows you to create tasks, mark performers and the status of completion. To work, you need to register and log in.
 

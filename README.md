@@ -10,7 +10,20 @@
 
 The application was created using the Django framework. Allows you to create tasks, mark performers and the status of completion. To work, you need to register and log in.
 
-Build With:
+### Installation:
+Для управления зависимостями в проекте используется <code>[Poetry](https://python-poetry.org/docs/)</code>.
+Чтобы настроить проект, выполните следующие действия:
+1. Склонируйте репозиторий 
+   ```
+    https://github.com/Konst-Pav/python-project-52
+   ```
+2. Чтобы настроить среду для проекта, вам необходимо определить переменные среды в файле .env:
+   ```
+   SECRET_KEY=''
+   DEBUG=False (либо True для режима отладки)
+   DATABASE_URL='' (ссылку на базу данных)
+   ```
+### Build With:
 - Python
 - Django
 - Bootstrap 5
@@ -19,15 +32,3 @@ Build With:
 - Gunicorn
 - Rollbar
 - Flake8
-
-Dependencies:
-- python = "^3.10"
-- django = "^4.2.6"
-- gunicorn = "^21.2.0"
-- django-bootstrap5 = "^23.3"
-- python-dotenv = "^1.0.0"
-- django-filter = "^23.5"
-- django-extensions = "^3.2.3"
-- dj-database-url = "^2.1.0"
-- psycopg2-binary = "^2.9.9"
-- rollbar = "^0.16.2"

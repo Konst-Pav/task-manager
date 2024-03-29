@@ -11,18 +11,35 @@
 The application was created using the Django framework. Allows you to create tasks, mark performers and the status of completion. To work, you need to register and log in.
 
 ### Installation:
-Для управления зависимостями в проекте используется <code>[Poetry](https://python-poetry.org/docs/)</code>.
-Чтобы настроить проект, выполните следующие действия:
-1. Склонируйте репозиторий 
+The project uses <code>[Poetry](https://python-poetry.org/docs/)</code> to manage dependencies.
+To set up a project, follow these steps:
+1. Clone the repository 
    ```
-    https://github.com/Konst-Pav/python-project-52
+   https://github.com/Konst-Pav/python-project-52
    ```
-2. Чтобы настроить среду для проекта, вам необходимо определить переменные среды в файле .env:
+2. To set up an environment for a project, you need to define the environment variables in the .env file:
    ```
    SECRET_KEY=''
-   DEBUG=False (либо True для режима отладки)
-   DATABASE_URL='' (ссылку на базу данных)
+   DEBUG=False (either True for debugging mode)
+   DATABASE_URL='' (the URL of the database)
+   STATIC_URL='' (specify the path to the directory with static files)
    ```
+3. In the project directory, run the following commands:
+   ```
+   poetry install
+   make migrations
+   make migrate
+   ```
+4. To run the tests and linter, use the following commands:
+   ```
+   make test
+   make lint
+   ```
+5. To run the application locally, run the following command:
+   ```
+   make run_local_server
+   ```
+
 ### Build With:
 - Python
 - Django

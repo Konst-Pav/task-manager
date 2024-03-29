@@ -1,4 +1,4 @@
-run_server:
+run_local_server:
 	poetry run python manage.py runserver
 
 test:

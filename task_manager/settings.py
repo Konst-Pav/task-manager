@@ -106,7 +106,7 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')
 ]
 
-STATIC_URL = os.getenv('static_url')
+STATIC_URL = os.getenv('STATIC_URL')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

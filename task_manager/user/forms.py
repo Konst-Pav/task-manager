@@ -43,6 +43,7 @@ class RegisterUserForm(UserCreationForm):
     )
     password1 = forms.CharField(
         label=_('Password'),
+        widget=forms.PasswordInput(),
         # label_suffix='',
         # widget=forms.PasswordInput(
         #     attrs={
@@ -53,6 +54,7 @@ class RegisterUserForm(UserCreationForm):
     )
     password2 = forms.CharField(
         label=_('Confirm the password'),
+        widget=forms.PasswordInput(),
         # label_suffix='',
         # widget=forms.PasswordInput(
         #     attrs={
@@ -94,7 +96,7 @@ class LoginUserForm(AuthenticationForm):
     )
     password = forms.CharField(
         label=_('Password'),
-        # label_suffix='',
+        widget=forms.PasswordInput()
         # widget=forms.PasswordInput(
         #     attrs={
         #         'class': 'form-control', 'placeholder': _('Password'),

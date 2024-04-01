@@ -139,7 +139,7 @@ BOOTSTRAP5 = {
 }
 
 ROLLBAR = {
-    'access_token': 'b287999df8ef48ee9a3cd3e5564d2a4a',
+    'access_token': os.environ.get('ROLLBAR_ACCESS_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
     'code_version': '1.0',
     'root': BASE_DIR,

@@ -13,53 +13,53 @@ class UserModelChoiceField(forms.models.ModelChoiceField):
 class RegisterUserForm(UserCreationForm):
     username = forms.CharField(
         label=_('Username'),
-        label_suffix='',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': _('Username'),
-            }
-        ),
+        # label_suffix='',
+        # widget=forms.TextInput(
+        #     attrs={
+        #         'class': 'form-control',
+        #         'placeholder': _('Username'),
+        #     }
+        # ),
     )
     first_name = forms.CharField(
         label=_('Name'),
-        label_suffix='',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': _('Your name'),
-            }
-        ),
+        # label_suffix='',
+        # widget=forms.TextInput(
+        #     attrs={
+        #         'class': 'form-control',
+        #         'placeholder': _('Your name'),
+        #     }
+        # ),
     )
     last_name = forms.CharField(
         label=_('Surname'),
-        label_suffix='',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': _('Your last name'),
-            }
-        ),
+        # label_suffix='',
+        # widget=forms.TextInput(
+        #     attrs={
+        #         'class': 'form-control',
+        #         'placeholder': _('Your last name'),
+        #     }
+        # ),
     )
     password1 = forms.CharField(
         label=_('Password'),
-        label_suffix='',
-        widget=forms.PasswordInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': _('Password'),
-            }
-        ),
+        # label_suffix='',
+        # widget=forms.PasswordInput(
+        #     attrs={
+        #         'class': 'form-control',
+        #         'placeholder': _('Password'),
+        #     }
+        # ),
     )
     password2 = forms.CharField(
         label=_('Confirm the password'),
-        label_suffix='',
-        widget=forms.PasswordInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': _('Password confirmation'),
-            }
-        ),
+        # label_suffix='',
+        # widget=forms.PasswordInput(
+        #     attrs={
+        #         'class': 'form-control',
+        #         'placeholder': _('Password confirmation'),
+        #     }
+        # ),
     )
 
     def clean_username(self):
@@ -84,21 +84,21 @@ class RegisterUserForm(UserCreationForm):
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(
         label=_('Username'),
-        label_suffix='',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': _('Username'),
-            }
-        )
+        # label_suffix='',
+        # widget=forms.TextInput(
+        #     attrs={
+        #         'class': 'form-control',
+        #         'placeholder': _('Username'),
+        #     }
+        # )
     )
     password = forms.CharField(
         label=_('Password'),
-        label_suffix='',
-        widget=forms.PasswordInput(
-            attrs={
-                'class': 'form-control', 'placeholder': _('Password'),
-                'label_suffix': '',
-            }
-        )
+        # label_suffix='',
+        # widget=forms.PasswordInput(
+        #     attrs={
+        #         'class': 'form-control', 'placeholder': _('Password'),
+        #         'label_suffix': '',
+        #     }
+        # )
     )

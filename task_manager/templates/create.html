@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 <h1 class="my-4">{{ body.title }}</h1>
@@ -8,7 +10,8 @@
         <div class="card-body bg-light">
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
+<!--                {{ form.as_p }}-->
+                {% bootstrap_form form %}
                 <button class="btn btn-primary" type="submit">{{ body.button_value }}</button>
             </form>
         </div>

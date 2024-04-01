@@ -30,11 +30,8 @@ migrations:
 migrate:
 	poetry run python manage.py migrate
 
-# shell:
-# 	poetry run python manage.py shell
-
-shell_plus:
-	poetry run python manage.py shell_plus --ipython
+shell:
+	poetry run python manage.py shell
 
 make_messages_ru:
 	poetry run python manage.py makemessages -l ru

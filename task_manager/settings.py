@@ -23,7 +23,6 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'django_filters',
     'django_extensions',
-    # 'shell_plus',
     'task_manager',
     'task_manager.user',
     'task_manager.label',

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 <h1 class="my-4">{{ body.title }}</h1>

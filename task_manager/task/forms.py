@@ -9,45 +9,26 @@ from task_manager.user.forms import UserModelChoiceField
 
 
 class TaskForm(ModelForm):
-    name = forms.CharField(
-        label=_('Name'),
-        label_suffix='',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': _('Name'),
-            }
-        ),
-    )
+    name = forms.CharField(label=_('Name'))
     description = forms.CharField(
         label=_('Description'),
-        label_suffix='',
         required=False,
         widget=forms.Textarea(
-            attrs={
-                'class': 'form-control',
-                'style': 'resize:none',
-                'placeholder': _('Description'),
-            }
+            attrs={'style': 'resize:none'}
         ),
     )
     executor = UserModelChoiceField(
         queryset=User.objects.all(),
         label=_('Executor'),
-        label_suffix='',
         required=False,
-        widget=forms.Select(attrs={'class': 'form-select'}),
     )
     status = forms.ModelChoiceField(
         queryset=Status.objects.all(),
         label=_('Status'),
-        label_suffix='',
-        widget=forms.Select(attrs={'class': 'form-select'}),
     )
     labels = forms.ModelMultipleChoiceField(
         queryset=Label.objects.all(),
         label=_('Labels'),
-        label_suffix='',
         widget=forms.SelectMultiple(
             attrs={
                 'class': 'form-select',

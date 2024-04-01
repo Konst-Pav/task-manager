@@ -8,10 +8,8 @@
 <form method="post">
     <div class="mb-3">
         {% csrf_token %}
-<!--        {{ form.as_p }}-->
         {% bootstrap_form form %}
         <input class="btn btn-primary" type="submit" value="{% translate 'Enter' %}">
     </div>
-
 </form>
 {% endblock %}

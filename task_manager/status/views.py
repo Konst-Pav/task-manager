@@ -6,7 +6,7 @@ from task_manager.status.forms import StatusForm
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.permissions import LoginRequiredMixinWithMessage
 from django.utils.translation import gettext as _
-from task_manager.utils import ProtectedErrorHandlerMixin
+from task_manager.mixins import ProtectedErrorHandlerMixin
 
 
 class StatusIndexView(LoginRequiredMixinWithMessage, ListView):

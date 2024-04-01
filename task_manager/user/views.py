@@ -15,7 +15,7 @@ from task_manager.permissions import (
     EditingProfilePermissionMixin,
     LoginRequiredMixinWithMessage,
 )
-from task_manager.utils import ProtectedErrorHandlerMixin
+from task_manager.mixins import ProtectedErrorHandlerMixin
 
 
 class UserIndexView(ListView):

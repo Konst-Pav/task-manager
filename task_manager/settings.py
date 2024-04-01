@@ -88,7 +88,6 @@ if os.getenv('LANGUAGE'):
     LANGUAGE_CODE = os.getenv('LANGUAGE')
 else:
     LANGUAGE_CODE = 'ru'
-# LANGUAGE_CODE = 'en-us'
 
 LANGUAGES = [
     ('en', 'English'),

@@ -29,16 +29,9 @@ class LabelCreateView(
 ):
     model = Label
     form_class = LabelForm
-    template_name = 'create.html'
+    template_name = 'label/create.html'
     success_url = reverse_lazy('labels_index')
     success_message = _('The label was created successfully')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = _('Task Manager – create a label')
-        body = {'title': _('Create a label'), 'button_value': _('create')}
-        context['body'] = body
-        return context
 
 
 class LabelUpdateView(
@@ -47,18 +40,11 @@ class LabelUpdateView(
     UpdateView,
 ):
     model = Label
-    template_name = 'update.html'
+    template_name = 'label/update.html'
     form_class = LabelForm
     success_url = reverse_lazy('labels_index')
     success_message = _('The label has been successfully changed')
     login_url = reverse_lazy('login_view')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = _('Task Manager – change the label')
-        body = {'title': _('Change the label'), 'button_value': _('edit')}
-        context['body'] = body
-        return context
 
 
 class LabelDeleteView(
@@ -67,23 +53,10 @@ class LabelDeleteView(
     DeleteView,
 ):
     model = Label
-    template_name = 'delete.html'
+    template_name = 'label/delete.html'
     success_url = reverse_lazy('labels_index')
     success_message = _('The label was successfully deleted')
     login_url = reverse_lazy('login_view')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = _('Task Manager – delete a label')
-        body_title = _('Delete a label')
-        body_subtitle = f"{_('Are you sure you want to delete the label')}: {context.get('label').name}"  # noqa: E501
-        button_value = _('Yes, delete')
-        context['body'] = {
-            'title': body_title,
-            'subtitle': body_subtitle,
-            'button_value': button_value,
-        }
-        return context
 
     def post(self, request, *args, **kwargs):
         tasks = Task.objects.filter(labels__id=kwargs['pk'])

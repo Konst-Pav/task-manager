@@ -1,16 +1,18 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
-{% block title %}{{ title }}{% endblock %}
+
+
+{% block title %}{% endblock %}
 {% block content %}
-<h1 class="my-4">{{ body.title }}</h1>
+<h1 class="my-4">{% block body_title %}{% endblock %}</h1>
 <form method="post">
     <div class="card mb-3">
         <div class="card-body bg-light">
             <form method="post">
-                {% csrf_token %}
-                {% bootstrap_form form %}
-                <button class="btn btn-primary" type="submit">{{ body.button_value }}</button>
+                {% block form %}{% endblock %}
+                <button class="btn btn-primary" type="submit">{% block button_value %}{% endblock %}</button>
             </form>
         </div>
     </div>

@@ -27,16 +27,9 @@ class UserIndexView(ListView):
 class UserCreateView(SuccessMessageMixin, CreateView):
     model = User
     form_class = RegisterUserForm
-    template_name = "create.html"
+    template_name = "user/create.html"
     success_url = reverse_lazy("login_view")
     success_message = _("The user has been successfully registered")
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = _("Task Manager – create a user")
-        body = {"title": _("Registration"), "button_value": _("register")}
-        context["body"] = body
-        return context
 
 
 class UserUpdateView(
@@ -47,16 +40,9 @@ class UserUpdateView(
 ):
     model = User
     form_class = RegisterUserForm
-    template_name = "update.html"
+    template_name = "user/update.html"
     success_url = reverse_lazy("users_index")
     success_message = _("The user has been successfully changed")
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = _("Task Manager – update the user profile")
-        body = {"title": _("Change the user"), "button_value": _("edit")}
-        context["body"] = body
-        return context
 
 
 class UserDeleteView(
@@ -67,30 +53,12 @@ class UserDeleteView(
     DeleteView,
 ):
     model = User
-    template_name = "delete.html"
+    template_name = "user/delete.html"
     success_url = reverse_lazy("users_index")
     error_url = reverse_lazy("index_view")
     success_message = _("The user was successfully deleted")
     error_message = _("It is not possible to delete a user because it is being used")  # noqa: E501
     redirect_url = reverse_lazy("users_index")
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = _("Task Manager – delete a user")
-        user_full_name = (
-            f"{context.get('user').first_name} {context.get('user').last_name}"
-        )
-        body_title = _("Delete a user")
-        body_subtitle = (
-            f"{_('Are you sure you want to delete the user')}: {user_full_name}"  # noqa: E501
-        )
-        button_value = _("Yes, delete")
-        context["body"] = {
-            "title": body_title,
-            "subtitle": body_subtitle,
-            "button_value": button_value,
-        }
-        return context
 
 
 class LoginUserView(SuccessMessageMixin, LoginView):
@@ -98,11 +66,6 @@ class LoginUserView(SuccessMessageMixin, LoginView):
     template_name = "login.html"
     next_page = reverse_lazy("index_view")
     success_message = _("You are logged in")
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = _("Task Manager – login")
-        return context
 
 
 def logout_user(request):

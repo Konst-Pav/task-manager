@@ -1,0 +1,10 @@
+{% extends "create.html" %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+
+
+{% block title %}{% translate 'Task Manager – create a label' %}{% endblock %}
+{% block body_title %}{% translate 'Create a label' %}{% endblock %}
+{% block form %}{% csrf_token %}{% bootstrap_form form %}{% endblock %}
+{% block button_value %}{% translate 'Create' %}{% endblock %}

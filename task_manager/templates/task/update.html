@@ -1,0 +1,10 @@
+{% extends "update.html" %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+
+
+{% block title %}{% translate 'Task Manager – update a task' %}{% endblock %}
+{% block body_title %}{% translate 'Change the task' %}{% endblock %}
+{% block form %}{% csrf_token %}{% bootstrap_form form %}{% endblock %}
+{% block button_value %}{% translate 'Edit' %}{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "delete.html" %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+
+
+{% block title %}{% translate 'Task Manager – delete a label' %}{% endblock %}
+{% block body_title %}{% translate 'Delete a label' %}{% endblock %}
+{% block body_subtitle %}{% translate 'Are you sure you want to delete the label' %} {{ label.name }}{% endblock %}
+{% block button_value %}{% translate 'Yes, delete' %}{% endblock %}

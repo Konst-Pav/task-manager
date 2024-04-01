@@ -26,16 +26,9 @@ class TaskCreateView(
 ):
     model = Task
     form_class = TaskForm
-    template_name = 'create.html'
+    template_name = 'task/create.html'
     success_url = reverse_lazy('tasks_index')
     success_message = _('The task has been successfully created')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = _('Task Manager – create a task')
-        body = {'title': _('Create a task'), 'button_value': _('create')}
-        context['body'] = body
-        return context
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -56,17 +49,10 @@ class TaskUpdateView(
 ):
     model = Task
     form_class = TaskForm
-    template_name = 'update.html'
+    template_name = 'task/update.html'
     success_url = reverse_lazy('tasks_index')
     success_message = _('The task has been successfully changed')
     login_url = '/login/'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        body = {'title': _('Change the task'), 'button_value': _('edit')}
-        context['title'] = _('Task Manager – change the task')
-        context['body'] = body
-        return context
 
 
 class TaskDeleteView(
@@ -75,20 +61,10 @@ class TaskDeleteView(
     DeleteView,
 ):
     model = Task
-    template_name = 'delete.html'
+    template_name = 'task/delete.html'
     success_url = reverse_lazy('tasks_index')
     success_message = _('The task has been successfully deleted')
     login_url = '/login/'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = _('Task Manager – delete a task')
-        context['body'] = {
-            'title': _('Delete a task'),
-            'subtitle': f"{_('Are you sure you want to delete the task')}: {context['task'].name}",  # noqa: E501
-            'button_value': _('Yes, delete'),
-        }
-        return context
 
     def post(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')

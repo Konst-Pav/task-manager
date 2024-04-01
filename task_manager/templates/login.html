@@ -2,9 +2,9 @@
 {% load i18n %}
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{% translate 'Task Manager – log in' %}{% endblock %}
 {% block content %}
-<h1 class="my-4">{% translate 'Login' %}</h1>
+<h1 class="my-4">{% translate 'Log in' %}</h1>
 <form method="post">
     <div class="mb-3">
         {% csrf_token %}

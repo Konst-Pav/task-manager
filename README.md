@@ -23,6 +23,7 @@ To set up a project, follow these steps:
    DEBUG=False (either True for debugging mode)
    DATABASE_URL='' (the URL of the database)
    STATIC_URL='' (specify the path to the directory with static files)
+   ROLLBAR_ACCESS_TOKEN='' (for the error tracking service https://docs.rollbar.com/docs/access-tokens)
    ```
 3. In the project directory, run the following commands:
    ```

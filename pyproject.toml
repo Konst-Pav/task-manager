@@ -18,6 +18,8 @@ django-extensions = "^3.2.3"
 dj-database-url = "^2.1.0"
 psycopg2-binary = "^2.9.9"
 rollbar = "^0.16.2"
+whitenoise = {extras = ["brotli"], version = "^6.7.0"}
+uvicorn = "^0.30.3"
 
 
 [tool.poetry.group.dev.dependencies]

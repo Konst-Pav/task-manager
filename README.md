@@ -1,5 +1,5 @@
 # Task Manager 
-### A web application for managing tasks. <code>[Try it now](http://62.113.97.17/)</code>
+### A web application for managing tasks
 
 [![Actions Status](https://github.com/Konst-Pav/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Konst-Pav/python-project-52/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/283a61003643f7eec2bf/maintainability)](https://codeclimate.com/github/Konst-Pav/python-project-52/maintainability)
